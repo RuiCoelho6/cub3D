@@ -22,7 +22,6 @@ SRCS = \
 
 OBJDIR = Objs
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
-
 MLX_DIR = libs/minilibx-linux
 LIB_DIR = libs/libft
 
@@ -40,7 +39,7 @@ $(NAME): libft $(OBJS)
 
 all: $(NAME)
 
-s: fclean mlx $(NAME)
+s: clean mlx $(NAME)
 	@./$(NAME)
 
 libft:
@@ -50,15 +49,15 @@ libft:
 	@echo "╚═══════════════════╝"
 
 mlx:
-	@$(MAKE) -C $(MLX_DIR) > /dev/null
+	@cd ./libs/minilibx-linux && make > /dev/null
 	@echo "╔══════════════════════╗"
 	@echo "║ ✅ Minilibx compiled ║"
 	@echo "╚══════════════════════╝"
 
 clean:
 	@$(RM) -R $(OBJDIR)
-	@$(MAKE) -C $(LIB_DIR) fclean > /dev/null
-	@$(MAKE) -C $(MLX_DIR) clean > /dev/null
+	@$(MAKE) -C $(LIB_DIR) fclean > /dev/null 2>&1 || true
+	@cd ./libs/minilibx-linux && make clean > /dev/null 2>&1 || true
 
 fclean: clean
 	@$(RM) $(NAME)
