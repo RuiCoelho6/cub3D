@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/11 10:53:07 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/11 12:08:54 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	init_window(t_mlx_data *mlx)
+void	init_window(t_data *data)
 {
-	mlx->img = (t_img_data *)ft_calloc(1, sizeof(t_img_data));
-	mlx->img->bits_per_pixel = 0;
-	mlx->img->line_length = 0;
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
+	data->img = (t_img_data *)ft_calloc(1, sizeof(t_img_data));
+	data->img->bits_per_pixel = 0;
+	data->img->line_length = 0;
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
 		return ;
-	mlx->window_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "cub3D");
-	if (!mlx->window_ptr)
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3D");
+	if (!data->win_ptr)
 		return ;
-	mlx->img->ptr = mlx_new_image(mlx->mlx_ptr, WIDTH, HEIGHT);
-	if (!mlx->img->ptr)
+	data->img->ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	if (!data->img->ptr)
 		return ;
-	mlx->img->addr = mlx_get_data_addr(mlx->img->ptr, &mlx->img->bits_per_pixel,
-			&mlx->img->line_length, &mlx->img->endian);
+	data->img->addr = mlx_get_data_addr(data->img->ptr, &data->img->bits_per_pixel,
+			&data->img->line_length, &data->img->endian);
 }
 
-int	main()
+int	main(int ac, char **av)
 {
-	t_mlx_data	mlx;
+	t_data	data;
 
 	ft_memset(&data, 0, sizeof(t_data));
 	if (ac != 2)
@@ -41,10 +41,10 @@ int	main()
 		return (printf("Error:Wrong file\n"), 1);
 	if (!parsing(av))
 		return(printf("Error:Wrong  parsing\n"), 1);
-	init_window(&mlx);
-	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
-	mlx_hook(mlx.window_ptr, KeyPress, KeyPressMask, &murder_window_key, &mlx);
-	mlx_hook(mlx.window_ptr, ClientMessage, NoEventMask, &murder_window, &mlx);
-	mlx_loop(mlx.mlx_ptr);
+	init_window(&data);
+	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &murder_window_key, &data);
+	mlx_hook(data.win_ptr, ClientMessage, NoEventMask, &murder_window, &data);
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }

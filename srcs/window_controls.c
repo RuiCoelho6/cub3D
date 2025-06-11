@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:59:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/11 11:31:48 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/11 12:08:28 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ int	handle_no_event(void)
 	return (0);
 }
 
-int	murder_window(t_mlx_data *mlx)
+int	murder_window(t_data *data)
 {
-	mlx_destroy_image(mlx->mlx_ptr, mlx->img->ptr);
-	mlx_destroy_window(mlx->mlx_ptr, mlx->window_ptr);
-	mlx_destroy_display(mlx->mlx_ptr);
-	free(mlx->mlx_ptr);
-	free(mlx->img);
+	mlx_destroy_image(data->mlx_ptr, data->img->ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
+	free(data->img);
 	exit(1);
 	return (0);
 }
 
-int	murder_window_key(int keysym, t_mlx_data *mlx)
+int	murder_window_key(int keysym, t_data *mlx)
 {
 	if (keysym == XK_Escape)
 		murder_window(mlx);
