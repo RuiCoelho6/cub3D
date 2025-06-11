@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/11 11:36:02 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/11 10:53:07 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ int	main()
 {
 	t_mlx_data	mlx;
 
+	ft_memset(&data, 0, sizeof(t_data));
+	if (ac != 2)
+		return(printf("Error:Wrong input\n"), 1);
+	if (!(check_file(av[1])))
+		return (printf("Error:Wrong file\n"), 1);
+	if (!parsing(av))
+		return(printf("Error:Wrong  parsing\n"), 1);
 	init_window(&mlx);
 	mlx_loop_hook(mlx.mlx_ptr, &handle_no_event, &mlx);
 	mlx_hook(mlx.window_ptr, KeyPress, KeyPressMask, &murder_window_key, &mlx);
