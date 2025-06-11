@@ -15,7 +15,7 @@ CC = cc -g
 FLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-SRCS = \
+SRCS = ./srcs/parsing.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
 	./srcs/main.c
@@ -40,7 +40,6 @@ $(NAME): libft $(OBJS)
 all: $(NAME)
 
 s: clean mlx $(NAME)
-	@./$(NAME)
 
 libft:
 	@$(MAKE) -C $(LIB_DIR) > /dev/null
