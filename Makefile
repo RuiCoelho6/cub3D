@@ -13,11 +13,13 @@
 NAME = cub3D
 CC = cc -g
 FLAGS = -Wall -Wextra -Werror
+VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes
 RM = rm -f
 
 SRCS = \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
+	./srcs/window_controls.c \
 	./srcs/main.c
 
 OBJDIR = Objs
@@ -40,7 +42,10 @@ $(NAME): libft $(OBJS)
 all: $(NAME)
 
 s: clean mlx $(NAME)
-	@./$(NAME)
+	@clear && ./$(NAME)
+
+v: clean mlx $(NAME)
+	@clear && $(VAL) ./$(NAME)
 
 libft:
 	@$(MAKE) -C $(LIB_DIR) > /dev/null
