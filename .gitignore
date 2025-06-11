@@ -1,0 +1,4 @@
+*.o
+Objs/
+*.a
+cub3D
