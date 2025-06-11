@@ -18,7 +18,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
+# include <X11/keysym.h>
 # include "../libs/libft/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
+# include "../libs/minilibx-linux/mlx_int.h"
+# include "window.h"
 
 typedef struct s_colors
 {
