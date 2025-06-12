@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/11 12:03:59 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/12 13:12:56 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,7 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char	**map;
-	char	**map_cheked;
-	int		height;
-	int		width;
-	int		player_x;
-	int		player_y;
-	int		exit_x;
-	int		exit_y;
+	char	player_direction;	
 }	t_map;
 
 typedef struct s_img_data
@@ -77,7 +71,10 @@ int		murder_window(t_data *mlx);
 int		murder_window_key(int keysym, t_data *mlx);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
-int	parsing(char **av);
+//parsing
+int	parsing_and_init(char *file, t_data *data);
 int	check_file(char	*map_file);
+char	**open_map(char *filename);
+char	*get_next_line(int fd);
 
 #endif

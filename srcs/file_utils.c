@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:00:09 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/11 12:01:08 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/12 12:05:00 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ char	**open_map(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (ft_printf("Error: Could not open file\n"), NULL);
+		return (printf("Error: Could not open file\n"), NULL);
 	map = get_next_line(fd);
 	if (!map)
-		return (ft_printf("Error: Empty file\n"), close(fd), NULL);
+		return (printf("Error: Empty file\n"), close(fd), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -45,6 +45,6 @@ char	**open_map(char *filename)
 	final_map = ft_split(map, '\n');
 	free(map);
 	if (final_map == NULL)
-		return (ft_printf("Error: Map empty\n"), NULL);
+		return (printf("Error: Map empty\n"), NULL);
 	return (final_map);
 }
