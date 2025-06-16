@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/16 10:29:13 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:56:55 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define MAIN_H
 
 # define PI 3.1415926535
-# define PI2 PI/2
-# define PI3 3*PI/2
 # define DR 0.0174533// one degree in radians
 
 # include <aio.h>
@@ -61,6 +59,7 @@ typedef struct s_map
 	char	**map_checked;
 	int		height;
 	int		width;
+	int		size;
 	int		player_x;
 	int		player_y;
 	int		exit_x;

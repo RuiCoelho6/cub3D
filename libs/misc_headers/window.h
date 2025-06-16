@@ -6,16 +6,14 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:56:28 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/12 12:13:40 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:48:53 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_H
 # define WINDOW_H
 
-# define WIN_WIDTH 666
-# define WIN_HEIGHT 420
-# define REF_WIDTH 333
-# define REF_HEIGHT 210
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 512
 
 #endif

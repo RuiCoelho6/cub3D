@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:15:57 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/16 10:54:12 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:56:46 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	dist(float ax, float ay, float bx, float by, float ang)
 	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
 
-void	cast_ray(t_player *player, t_data *data)
+void	ray_caster(t_player *player, t_data *data, t_map map)
 {
 	float	rx, ry, ra, xo, yo, nTan, aTan, distH, distV, distT, hx, hy, vx, vy, lineH, lineO, ca;
 	int		r, mx, my, mp, dof, mapX, mapY;
@@ -77,7 +77,6 @@ void	cast_ray(t_player *player, t_data *data)
 				ry += yo;
 				dof += 1;
 		}
-
 		}
 		// Check the colisao no eixo y (2D)
 		dof = 0;
@@ -85,14 +84,14 @@ void	cast_ray(t_player *player, t_data *data)
 		vx = player->pos_x;
 		vy = player->pos_y;
 		nTan = -tan(ra);
-		if (ra > PI2 && ra < PI3)// looking left
+		if (ra > (PI / 2) && ra < (3 * PI / 2))// looking left
 		{
 			ry = (((int)player->pos_y >> 6) << 6) - 0.0001;
 			rx = (player->pos_y - ry) * nTan + player->pos_x;
 			yo = -64;
 			xo = -yo * nTan;
 		}
-		if (ra < PI2 || ra > PI3)// looking right
+		if (ra < (PI / 2) || ra > (3 * PI / 2))// looking right
 		{
 			ry = (((int)player->pos_y >> 6) << 6) + 64;
 			rx = (player->pos_y - ry) * nTan + player->pos_x;
@@ -143,8 +142,7 @@ void	cast_ray(t_player *player, t_data *data)
 		if (ca > 2 * PI)
 			ca -= 2 * PI;
 		distT = distT * cos(ca);// fix fisheye
-		float mapSize = 1;
-		lineH = (mapSize * 320) / distT;// line height
+		lineH = (map.size * 320) / distT;// line height
 		if (lineH > 320)
 			lineH = 320;
 		lineO = 160 - lineH / 2;// line offset
