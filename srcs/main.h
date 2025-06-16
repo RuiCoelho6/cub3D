@@ -6,12 +6,15 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/12 12:01:56 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/16 13:56:55 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MAIN_H
 # define MAIN_H
+
+# define PI 3.1415926535
+# define DR 0.0174533// one degree in radians
 
 # include <aio.h>
 # include <fcntl.h>
@@ -19,6 +22,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 # include <X11/keysym.h>
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
@@ -31,6 +35,16 @@ typedef struct s_colors
 	int	Ccolor[3]; //Ceiling color
 } t_colors;
 
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+	double	angle;
+	double	dir_x;
+	double	dir_y;
+} t_player;
+
+
 typedef struct s_texture
 {
 	char 	*NO;
@@ -42,9 +56,10 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char	**map;
-	char	**map_cheked;
+	char	**map_checked;
 	int		height;
 	int		width;
+	int		size;
 	int		player_x;
 	int		player_y;
 	int		exit_x;
