@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/12 17:24:13 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/16 10:29:13 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3*PI/2
+# define DR 0.0174533// one degree in radians
 
 # include <aio.h>
 # include <fcntl.h>
@@ -23,6 +24,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 # include <X11/keysym.h>
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
