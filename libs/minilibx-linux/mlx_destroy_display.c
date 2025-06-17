@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/17 13:42:49 by rpires-c         ###   ########.fr       */
+/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
+/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main.h"
+#include "mlx_int.h"
 
-void	init_player(t_player *player)
+int	mlx_destroy_display(t_xvar *xvar)
 {
-	player->pos_x = 100;
-	player->pos_y = 100;
-	player->angle = 0;
-	player->dir_x = 0;
-	player->dir_y = 60;
+	XCloseDisplay(xvar->display);
 }

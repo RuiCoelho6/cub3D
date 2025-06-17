@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/17 13:34:57 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:25:57 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 
 typedef struct s_colors
 {
-	int	Fcolor[3]; //floor color
-	int	Ccolor[3]; //Ceiling color
+	int	fcolor[3]; //floor color
+	int	ccolor[3]; //Ceiling color
 }	t_colors;
 
 typedef struct s_player
@@ -42,15 +42,14 @@ typedef struct s_player
 	double	angle;
 	double	dir_x;
 	double	dir_y;
-} t_player;
-
+}	t_player;
 
 typedef struct s_texture
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 }	t_texture;
 
 typedef struct s_map
@@ -92,6 +91,22 @@ int		murder_window(t_data *mlx);
 int		murder_window_key(int keysym, t_data *mlx);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
+// Raycasting functions
+void	ray_caster(t_player *player, t_data *data, t_map map);
+
+// Casting horizontal rays
+void	init_horizontal_ray(float ra, t_player *player, float *rx, float *ry);
+void	get_horizontal_step(float ra, float *xo, float *yo);
+int		check_horizontal_wall(float rx, float ry, t_data *data);
+float	cast_horizontal_ray(float ra, t_player *player, t_data *data);
+
+// Casting horizontal rays
+void	init_vertical_ray(float ra, t_player *player, float *rx, float *ry);
+void	get_vertical_step(float ra, float *xo, float *yo);
+int		check_vertical_wall(float rx, float ry, t_data *data);
+float	cast_vertical_ray(float ra, t_player *player, t_data *data);
+
+// Parsing functions
 int		parsing(char **av);
 int		check_file(char	*map_file);
 

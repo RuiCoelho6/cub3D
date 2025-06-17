@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:38:02 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/11 10:50:13 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/17 13:39:43 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ int	parsing(char **av)
 		printf("%s\n", av[i]);
 		i++;
 	}
-	return(1);
+	return (1);
 }
