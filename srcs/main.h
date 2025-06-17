@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/16 13:56:55 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 13:34:57 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_colors
 {
 	int	Fcolor[3]; //floor color
 	int	Ccolor[3]; //Ceiling color
-} t_colors;
+}	t_colors;
 
 typedef struct s_player
 {
@@ -47,11 +47,11 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-	char 	*NO;
+	char	*NO;
 	char	*SO;
 	char	*WE;
 	char	*EA;
-} t_texture;
+}	t_texture;
 
 typedef struct s_map
 {
@@ -77,13 +77,13 @@ typedef struct s_img_data
 
 typedef struct s_data
 {
-	void	*mlx_ptr; //mlx handle
-	void	*win_ptr; //mlx handle
+	void		*mlx_ptr;// mlx handle
+	void		*win_ptr;// mlx handle
 	t_img_data	*img;
-	t_texture	texture; //texture data
-	t_colors	colors; //color data
-	t_map	map; // map data (can change depending on what will be need)
-	int error; // if something is wrong, and checker if init is done good
+	t_texture	texture;// texture data
+	t_colors	colors;// color data
+	t_map		map;// map data (can change depending on what will be need)
+	int			error;// if something is wrong, and checker if init is done good
 }	t_data;
 
 // Window control functions
@@ -92,7 +92,7 @@ int		murder_window(t_data *mlx);
 int		murder_window_key(int keysym, t_data *mlx);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
-int	parsing(char **av);
-int	check_file(char	*map_file);
+int		parsing(char **av);
+int		check_file(char	*map_file);
 
 #endif
