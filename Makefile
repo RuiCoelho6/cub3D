@@ -20,7 +20,9 @@ SRCS = ./srcs/parsing.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
 	./srcs/window_controls.c \
-	./srcs/ray/ray.c \
+	./srcs/ray/horizontal_cast.c \
+	./srcs/ray/vertical_cast.c \
+	./srcs/ray/ray_caster.c \
 	./srcs/player/player.\
 	./srcs/main.c
 
