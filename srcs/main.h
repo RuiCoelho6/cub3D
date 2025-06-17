@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/17 14:25:57 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:25:04 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
 // Raycasting functions
 void	ray_caster(t_player *player, t_data *data, t_map map);
+float	dist(float ax, float ay, float bx, float by);
 
 // Casting horizontal rays
 void	init_horizontal_ray(float ra, t_player *player, float *rx, float *ry);

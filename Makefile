@@ -23,7 +23,7 @@ SRCS = ./srcs/parsing.c \
 	./srcs/ray/horizontal_cast.c \
 	./srcs/ray/vertical_cast.c \
 	./srcs/ray/ray_caster.c \
-	./srcs/player/player.\
+	./srcs/player/player.c\
 	./srcs/main.c
 
 OBJDIR = Objs

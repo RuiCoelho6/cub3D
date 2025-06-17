@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/17 14:21:30 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:26:58 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	init_horizontal_ray(float ra, t_player *player, float *rx, float *ry)
 {
 	float	atan;
-	float	xo;
-	float	yo;
 
 	atan = -1 / tan(ra);
 	if (ra > PI)
@@ -91,5 +89,5 @@ float	cast_horizontal_ray(float ra, t_player *player, t_data *data)
 		ry += yo;
 		dof++;
 	}
-	return (INT_MAX);
+	return (1000000.0f);
 }
