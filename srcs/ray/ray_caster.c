@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                              :+:      :+:    :+:   */
+/*   ray_caster.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:15:57 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/17 14:21:20 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/18 10:22:31 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,27 @@ float	calculate_wall_height(float distance, t_map map)
 	return (lineh);
 }
 
-void	ray_caster(t_player *player, t_data *data, t_map map)
+t_ray_result	ray_caster(float ra, t_player *player, t_data *data)
 {
-	float	ra;
-	float	disth;
-	float	distv;
-	float	distt;
-	int		r;
+	t_ray_result	result;
+	float			disth;
+	float			distv;
+	int				hit_horizontal;
 
-	ra = player->angle - DR * 30;
-	ra = normalize_angle(ra);
-	r = 0;
-	while (r < 60)
+	disth = cast_horizontal_ray(ra, player, data);
+	distv = cast_vertical_ray(ra, player, data);
+	if (distv < disth)
 	{
-		disth = cast_horizontal_ray(ra, player, data);
-		distv = cast_vertical_ray(ra, player, data);
-		if (distv < disth)
-			distt = distv;
-		else
-			distt = disth;
-		distt = fix_fisheye(distt, player->angle, ra);
-		calculate_wall_height(distt, map);
-		ra += DR;
-		ra = normalize_angle(ra);
-		r++;
+		result.distance = distv;
+		hit_horizontal = 0;
 	}
+	else
+	{
+		result.distance = disth;
+		hit_horizontal = 1;
+	}
+	result.wall_side = get_wall_side(ra, hit_horizontal);
+	result.wall_type = 1;
+	result.distance = fix_fisheye(result.distance, player->angle, ra);
+	return (result);
 }

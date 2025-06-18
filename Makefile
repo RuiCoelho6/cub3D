@@ -23,6 +23,7 @@ SRCS = ./srcs/parsing.c \
 	./srcs/ray/horizontal_cast.c \
 	./srcs/ray/vertical_cast.c \
 	./srcs/ray/ray_caster.c \
+	./srcs/ray/draw.c \
 	./srcs/player/player.c\
 	./srcs/main.c
 
@@ -46,7 +47,7 @@ $(NAME): libft $(OBJS)
 all: $(NAME)
 
 s: clean mlx $(NAME)
-	@./$(NAME)
+	@clear; ./$(NAME)
 
 v: clean mlx $(NAME)
 	@clear && $(VAL) ./$(NAME)

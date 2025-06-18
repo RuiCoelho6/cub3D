@@ -6,11 +6,31 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:59:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/11 12:08:28 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:20:44 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+void	init_window(t_data *data)
+{
+	data->img = (t_img_data *)ft_calloc(1, sizeof(t_img_data));
+	data->img->bits_per_pixel = 0;
+	data->img->line_length = 0;
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		return ;
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			"cub3D");
+	if (!data->win_ptr)
+		return ;
+	data->img->ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!data->img->ptr)
+		return ;
+	data->img->addr = mlx_get_data_addr(data->img->ptr,
+			&data->img->bits_per_pixel,
+			&data->img->line_length, &data->img->endian);
+}
 
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color)
 {
