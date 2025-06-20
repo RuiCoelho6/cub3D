@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/20 15:31:34 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:20:57 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,17 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 		wall_start = 0;
 	if (wall_end > WIN_HEIGHT)
 		wall_end = WIN_HEIGHT;
+	
 	// Draw ceiling
 	for (y = 0; y < wall_start; y++)
 		my_mlx_pixel_put(data->img, x, y, CEILING_COLOR);
+	
 	// Draw wall
 	for (y = wall_start; y < wall_end; y++)
 		my_mlx_pixel_put(data->img, x, y, wall_color);
-	// Draw floor
-	for (x = 0; x < WIN_WIDTH; x++)
+	
+	// Draw floor - FIXED: use different variable and correct y coordinate
+	for (y = wall_end; y < WIN_HEIGHT; y++)
 		my_mlx_pixel_put(data->img, x, y, FLOOR_COLOR);
 }
 

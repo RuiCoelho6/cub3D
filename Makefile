@@ -46,8 +46,8 @@ $(NAME): libft $(OBJS)
 
 all: $(NAME)
 
-s: clean mlx $(NAME)
-	@clear; ./$(NAME)
+s: fclean mlx $(NAME)
+	./$(NAME)
 
 v: clean mlx $(NAME)
 	@clear && $(VAL) ./$(NAME)
