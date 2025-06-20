@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/12 13:12:56 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/20 11:12:47 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 
 typedef struct s_colors
 {
-	int	Fcolor[3]; //floor color
-	int	Ccolor[3]; //Ceiling color
+	float	fcolor[3]; //floor color
+	float	ccolor[3]; //Ceiling color ->tem de ser float
 } t_colors;
 
 typedef struct s_texture
@@ -42,7 +42,15 @@ typedef struct s_texture
 typedef struct s_map
 {
 	char	**map;
-	char	player_direction;	
+	char	player_direction;
+	int start_map;
+	char	player_dir;
+	int playerx;
+	int playery;
+	int max_x;
+	int max_y;
+	
+	// guardar com o maximo x e y;	
 }	t_map;
 
 typedef struct s_img_data
@@ -71,10 +79,21 @@ int		murder_window(t_data *mlx);
 int		murder_window_key(int keysym, t_data *mlx);
 void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 
-//parsing
+//parsing and init
 int	parsing_and_init(char *file, t_data *data);
 int	check_file(char	*map_file);
 char	**open_map(char *filename);
 char	*get_next_line(int fd);
+int	get_resourchs(char **d_f, t_data *data);
+int	texture_color_finder(char **d_f, t_data *data);
+int	ft_isws(int c);
+int ea_getter(char *line, int i, t_data *data);
+int no_getter(char *line, int i, t_data *data);
+int so_getter(char *line, int i, t_data *data);
+int we_getter(char *line, int i, t_data *data);
+int save_color(char *line, int i, t_data *data, int info);
+int	is_empty_line(char *line);
+int map_valid (t_data *data);
+char **save_map(char **file, int start, int end);
 
 #endif
