@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/18 10:37:01 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:31:34 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,17 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 	int	wall_color;
 	int	y;
 
+	if (x < 0 || x >= WIN_WIDTH)
+		return ;
 	wall_height = calculate_wall_height(ray_result.distance, data->map);
 	wall_start = (WIN_HEIGHT - wall_height) / 2;
 	wall_end = wall_start + wall_height;
 	wall_color = get_wall_color(ray_result.wall_side);
 	wall_color = apply_distance_shading(wall_color, ray_result.distance);
+	if (wall_start < 0)
+		wall_start = 0;
+	if (wall_end > WIN_HEIGHT)
+		wall_end = WIN_HEIGHT;
 	// Draw ceiling
 	for (y = 0; y < wall_start; y++)
 		my_mlx_pixel_put(data->img, x, y, CEILING_COLOR);
@@ -78,7 +84,7 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 	for (y = wall_start; y < wall_end; y++)
 		my_mlx_pixel_put(data->img, x, y, wall_color);
 	// Draw floor
-	for (y = wall_end; y < WIN_HEIGHT; y++)
+	for (x = 0; x < WIN_WIDTH; x++)
 		my_mlx_pixel_put(data->img, x, y, FLOOR_COLOR);
 }
 
@@ -90,12 +96,12 @@ void	render_scene(t_player *player, t_data *data)
 
 	ra = player->angle - DR * 30;
 	ra = normalize_angle(ra);
-	for (x = 0; x < WIN_HEIGHT; x++)
+	for (x = 0; x < WIN_WIDTH; x++)
 	{
 		ray_result = ray_caster(ra, player, data);
 		draw_ray_column(data, x, ray_result);
 		ra += DR;
 		ra = normalize_angle(ra);
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->ptr, 0, 0);
 }

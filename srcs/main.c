@@ -6,14 +6,16 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/18 12:26:01 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:14:23 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	key_hook(int keycode, t_player *player, t_data *data)
+int key_hook(int keycode, t_data *data)
 {
+	t_player *player = data->player; // Get player from data
+
 	if (keycode == 65307) // ESC key
 		exit(0);
 	else if (keycode == 119) // W key - move forward
@@ -60,7 +62,7 @@ void	init_map(t_data *data)
 }
 
 // Main function
-int	main(void)
+int main(void)
 {
 	t_data		data;
 	t_player	player;
@@ -68,9 +70,10 @@ int	main(void)
 	init_window(&data);
 	init_map(&data);
 	init_player(&player);
+	data.player = &player;
 	render_scene(&player, &data);
 	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
-	mlx_key_hook(data.win_ptr, key_hook, &player);
+	mlx_key_hook(data.win_ptr, key_hook, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &murder_window_key, &data);
 	mlx_hook(data.win_ptr, ClientMessage, NoEventMask, &murder_window, &data);
 	mlx_loop(data.mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/18 11:21:41 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:08:47 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,6 @@ int				check_file(char	*map_file);
 
 // Player functions
 void			init_player(t_player *player);
+int				key_hook(int keycode, t_data *data);
 
 #endif
