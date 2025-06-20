@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/12 13:11:29 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/20 14:10:24 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	main(int ac, char **av)
 	if (!(check_file(av[1])))
 		return (printf("Error:Wrong file\n"), 1);
 	if (!parsing_and_init(av[1], &data))
-		return(1);
+		return (free_data(&data), 1);
 	/*init_window(&data);
 	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &murder_window_key, &data);
 	mlx_hook(data.win_ptr, ClientMessage, NoEventMask, &murder_window, &data);
 	mlx_loop(data.mlx_ptr);*/
+	free_data(&data);
 	return (0);
 }

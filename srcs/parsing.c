@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:38:02 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/20 11:20:25 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/20 14:22:55 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int	check_file(char	*map_file)
 
 int	parsing_and_init(char *file, t_data *data)
 {
-	// verificar se todas as predefinicoes das texturas e cores estao presentes
-	char **data_file;
+	char	**data_file;
 
 	data_file = open_map(file);
 	if (data_file == NULL)
 		return (0);
-	if (!get_resourchs(data_file, data)) //verificar se tudo esta presente e bem
-		return (free(data_file), 0); // provalvelmente vou precisar de dar free a !lista!
-	return(1);
+	if (!get_resourchs(data_file, data))
+		return (ft_free_dc(&data_file), 0);
+	return (ft_free_dc(&data_file), 1);
 }

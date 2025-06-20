@@ -16,7 +16,7 @@ FLAGS = -Wall -Wextra -Werror
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes
 RM = rm -f
 
-SRCS = ./srcs/map_stf.c ./srcs/color_getter.c ./srcs/texture_getter.c \
+SRCS = ./srcs/free_d.c ./srcs/map_stf.c ./srcs/color_getter.c ./srcs/texture_getter.c \
 	./srcs/texture_color_finder.c ./srcs/parsing.c ./srcs/file_utils.c ./srcs/file_resourchs_getter.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \

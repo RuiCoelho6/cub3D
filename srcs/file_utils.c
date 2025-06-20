@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:00:09 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/18 17:56:03 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/20 14:09:16 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ char	*ft_strjoin_free(char *str1, char *str2)
 	free(str1);
 	return (buffer);
 }
+
 int	is_empty_line(char *line)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!line)
 		return (1);
-
 	while (line[i])
 	{
 		if (!ft_isws(line[i]))
