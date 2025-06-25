@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 15:11:07 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:43:42 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int key_hook(int keycode, t_data *data)
 		tile_x = get_player_tile_x(player);
 		if (data->map.map[tile_y][tile_x] == 1)
 		{
-			player->pos_x -= cos(player->angle) * 5;
-			player->pos_y += sin(player->angle) * 5;
+			player->pos_x -= cos(-forward_angle) * 5;
+			player->pos_y -= sin(-forward_angle) * 5;
 		}
 	}
 	else if (keycode == 115) // S key - move backward
@@ -52,14 +52,52 @@ int key_hook(int keycode, t_data *data)
 		tile_x = get_player_tile_x(player);
 		if (data->map.map[tile_y][tile_x] == 1)
 		{
-			player->pos_x += cos(player->angle) * 5;
-			player->pos_y -= sin(player->angle) * 5;
+			player->pos_x += cos(-forward_angle) * 5;
+			player->pos_y += sin(-forward_angle) * 5;
 		}
 	}
-	else if (keycode == 97) // A key - turn left
+	else if (keycode == 100) // A key - strafe left
+	{
+		float strafe_angle = forward_angle + PI/2; // Perpendicular to forward direction
+		player->pos_x += cos(-strafe_angle) * 5;
+		player->pos_y += sin(-strafe_angle) * 5;
+		tile_y = get_player_tile_y(player);
+		tile_x = get_player_tile_x(player);
+		if (data->map.map[tile_y][tile_x] == 1)
+		{
+			player->pos_x -= cos(-strafe_angle) * 5;
+			player->pos_y -= sin(-strafe_angle) * 5;
+		}
+	}
+	else if (keycode == 97) // D key - strafe right
+	{
+		float strafe_angle = forward_angle - PI/2; // Perpendicular to forward direction
+		player->pos_x += cos(-strafe_angle) * 5;
+		player->pos_y += sin(-strafe_angle) * 5;
+		tile_y = get_player_tile_y(player);
+		tile_x = get_player_tile_x(player);
+		if (data->map.map[tile_y][tile_x] == 1)
+		{
+			player->pos_x -= cos(-strafe_angle) * 5;
+			player->pos_y -= sin(-strafe_angle) * 5;
+		}
+	}
+	else if (keycode == 65361) // Left arrow - turn left
 		player->angle -= 0.1;
-	else if (keycode == 100) // D key - turn right
+	else if (keycode == 65363) // Right arrow - turn right
 		player->angle += 0.1;
+	else if (keycode == 65364) // Up arrow - look up
+	{
+		player->pitch -= 0.1;
+		if (player->pitch < -1.0) // Limit how far up you can look
+			player->pitch = -1.0;
+	}
+	else if (keycode == 65362) // Down arrow - look down
+	{
+		player->pitch += 0.1;
+		if (player->pitch > 1.0) // Limit how far down you can look
+			player->pitch = 1.0;
+	}
 	player->angle = normalize_angle(player->angle);
 	render_scene(player, data);
 	return (0);

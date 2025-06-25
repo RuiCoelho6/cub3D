@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 14:24:40 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:29:09 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_player
 	double	angle;
 	double	dir_x;
 	double	dir_y;
+	double	pitch;
 }	t_player;
 
 typedef struct s_texture

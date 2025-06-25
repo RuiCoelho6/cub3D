@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 14:36:42 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:37:37 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,13 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 	int	wall_end;
 	int	wall_color;
 	int	y;
+	int	pitch_offset;
 
 	if (x < 0 || x >= WIN_WIDTH)
 		return ;
 	wall_height = calculate_wall_height(ray_result.distance, data->map);
-	wall_start = (WIN_HEIGHT - wall_height) / 2;
+	pitch_offset = data->player->pitch * 100;
+	wall_start = (WIN_HEIGHT - wall_height) / 2 + pitch_offset;
 	wall_end = wall_start + wall_height;
 	wall_color = get_wall_color(ray_result.wall_side);
 	wall_color = apply_distance_shading(wall_color, ray_result.distance);
