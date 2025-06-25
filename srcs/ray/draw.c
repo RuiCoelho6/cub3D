@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/20 16:20:57 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:21:55 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 	for (y = wall_start; y < wall_end; y++)
 		my_mlx_pixel_put(data->img, x, y, wall_color);
 	
-	// Draw floor - FIXED: use different variable and correct y coordinate
+	// Draw floor
 	for (y = wall_end; y < WIN_HEIGHT; y++)
 		my_mlx_pixel_put(data->img, x, y, FLOOR_COLOR);
 }
@@ -96,14 +96,16 @@ void	render_scene(t_player *player, t_data *data)
 	float			ra;
 	t_ray_result	ray_result;
 	int				x;
+	float			fov = DR * 60;
+	float			angle_step = fov / WIN_WIDTH;
 
-	ra = player->angle - DR * 30;
+	ra = player->angle - (fov / 2);
 	ra = normalize_angle(ra);
 	for (x = 0; x < WIN_WIDTH; x++)
 	{
 		ray_result = ray_caster(ra, player, data);
 		draw_ray_column(data, x, ray_result);
-		ra += DR;
+		ra += angle_step;
 		ra = normalize_angle(ra);
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->ptr, 0, 0);
