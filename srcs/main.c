@@ -6,27 +6,55 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 14:29:35 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:11:07 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
+int	get_player_tile_x(t_player *player)
+{
+	return (int)(player->pos_x) >> 6;
+}
+
+int	get_player_tile_y(t_player *player)
+{
+	return (int)(player->pos_y) >> 6;
+}
+
 int key_hook(int keycode, t_data *data)
 {
-	t_player *player = data->player; // Get player from data
+	t_player *player = data->player;
+	int tile_x;
+	int tile_y;
+	float forward_angle;
 
+	forward_angle = player->angle - PI/2;
 	if (keycode == 65307) // ESC key
 		exit(0);
 	else if (keycode == 119) // W key - move forward
 	{
-		player->pos_x += cos(player->angle) * 5;
-		player->pos_y += sin(player->angle) * 5;
+		player->pos_x += cos(-forward_angle) * 5;
+		player->pos_y += sin(-forward_angle) * 5;
+		tile_y = get_player_tile_y(player);
+		tile_x = get_player_tile_x(player);
+		if (data->map.map[tile_y][tile_x] == 1)
+		{
+			player->pos_x -= cos(player->angle) * 5;
+			player->pos_y += sin(player->angle) * 5;
+		}
 	}
 	else if (keycode == 115) // S key - move backward
 	{
-		player->pos_x -= cos(player->angle) * 5;
-		player->pos_y -= sin(player->angle) * 5;
+		player->pos_x -= cos(-forward_angle) * 5;
+		player->pos_y -= sin(-forward_angle) * 5;
+		tile_y = get_player_tile_y(player);
+		tile_x = get_player_tile_x(player);
+		if (data->map.map[tile_y][tile_x] == 1)
+		{
+			player->pos_x += cos(player->angle) * 5;
+			player->pos_y -= sin(player->angle) * 5;
+		}
 	}
 	else if (keycode == 97) // A key - turn left
 		player->angle -= 0.1;
