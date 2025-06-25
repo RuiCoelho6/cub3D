@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/20 16:14:23 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:29:35 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int key_hook(int keycode, t_data *data)
 // Initialize map
 void	init_map(t_data *data)
 {
-	int map_data[MAP_SIZE][MAP_SIZE] = {
+	int	i;
+	int	j;
+	int	map_data[MAP_SIZE][MAP_SIZE] = {
 		{1,1,1,1,1,1,1,1},
 		{1,0,0,0,0,0,0,1},
 		{1,0,1,0,0,1,0,1},
@@ -50,7 +52,6 @@ void	init_map(t_data *data)
 		{1,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1}
 	};
-	int i, j;
 	for (i = 0; i < MAP_SIZE; i++)
 	{
 		for (j = 0; j < MAP_SIZE; j++)

@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/18 14:08:47 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:24:40 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # define PI 3.1415926535
 # define DR 0.0174533// one degree in radians
-#define MAP_SIZE 8
+# define MAP_SIZE 8
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 512
 
 // Colors
 #define WALL_NORTH 0xFF0000// Red
@@ -36,7 +38,6 @@
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
 # include "../libs/minilibx-linux/mlx_int.h"
-# include "../libs/misc_headers/window.h"
 
 typedef struct s_colors
 {

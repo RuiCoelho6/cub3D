@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 14:21:55 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:28:13 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,27 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 		wall_start = 0;
 	if (wall_end > WIN_HEIGHT)
 		wall_end = WIN_HEIGHT;
-	
 	// Draw ceiling
-	for (y = 0; y < wall_start; y++)
+	y = 0;
+	while (y < wall_start)
+	{
 		my_mlx_pixel_put(data->img, x, y, CEILING_COLOR);
-	
+		y++;
+	}
 	// Draw wall
-	for (y = wall_start; y < wall_end; y++)
+	y = wall_start;
+	while ( y < wall_end)
+	{
 		my_mlx_pixel_put(data->img, x, y, wall_color);
-	
+		y++;
+	}
 	// Draw floor
-	for (y = wall_end; y < WIN_HEIGHT; y++)
+	y = wall_end;
+	while (y < WIN_HEIGHT)
+	{
 		my_mlx_pixel_put(data->img, x, y, FLOOR_COLOR);
+		y++;
+	}
 }
 
 void	render_scene(t_player *player, t_data *data)
@@ -96,17 +105,21 @@ void	render_scene(t_player *player, t_data *data)
 	float			ra;
 	t_ray_result	ray_result;
 	int				x;
-	float			fov = DR * 60;
-	float			angle_step = fov / WIN_WIDTH;
+	float			fov;
+	float			angle_step;
 
+	fov = DR * 60;
+	angle_step = fov / WIN_WIDTH;
 	ra = player->angle - (fov / 2);
 	ra = normalize_angle(ra);
-	for (x = 0; x < WIN_WIDTH; x++)
+	x = 0;
+	while ( x < WIN_WIDTH)
 	{
 		ray_result = ray_caster(ra, player, data);
 		draw_ray_column(data, x, ray_result);
 		ra += angle_step;
 		ra = normalize_angle(ra);
+		x++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img->ptr, 0, 0);
 }
