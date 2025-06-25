@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:15:57 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/18 10:22:31 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:53:09 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ float	calculate_wall_height(float distance, t_map map)
 {
 	float	lineh;
 
-	lineh = (map.size * 320) / distance;
-	if (lineh > 320)
-		lineh = 320;
+	lineh = (map.size * WIN_HEIGHT) / distance;
+	if (lineh > WIN_HEIGHT)
+		lineh = WIN_HEIGHT;
 	return (lineh);
 }
 
