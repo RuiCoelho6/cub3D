@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/26 14:13:32 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:30:00 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	check_looking(t_data *data, int keycode)
 	else if (keycode == 65364)
 	{
 		data->player->pitch -= 0.3;
-		if (data->player->pitch < -3.5)
-			data->player->pitch = -3.5;
+		if (data->player->pitch < -4.5)
+			data->player->pitch = -4.5;
 	}
 	else if (keycode == 65362)
 	{
 		data->player->pitch += 0.3;
-		if (data->player->pitch > 5)
-			data->player->pitch = 5;
+		if (data->player->pitch > 3.5)
+			data->player->pitch = 3.5;
 	}
 }
 
