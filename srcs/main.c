@@ -6,102 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 15:43:42 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:18:21 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-int	get_player_tile_x(t_player *player)
-{
-	return (int)(player->pos_x) >> 6;
-}
-
-int	get_player_tile_y(t_player *player)
-{
-	return (int)(player->pos_y) >> 6;
-}
-
-int key_hook(int keycode, t_data *data)
-{
-	t_player *player = data->player;
-	int tile_x;
-	int tile_y;
-	float forward_angle;
-
-	forward_angle = player->angle - PI/2;
-	if (keycode == 65307) // ESC key
-		exit(0);
-	else if (keycode == 119) // W key - move forward
-	{
-		player->pos_x += cos(-forward_angle) * 5;
-		player->pos_y += sin(-forward_angle) * 5;
-		tile_y = get_player_tile_y(player);
-		tile_x = get_player_tile_x(player);
-		if (data->map.map[tile_y][tile_x] == 1)
-		{
-			player->pos_x -= cos(-forward_angle) * 5;
-			player->pos_y -= sin(-forward_angle) * 5;
-		}
-	}
-	else if (keycode == 115) // S key - move backward
-	{
-		player->pos_x -= cos(-forward_angle) * 5;
-		player->pos_y -= sin(-forward_angle) * 5;
-		tile_y = get_player_tile_y(player);
-		tile_x = get_player_tile_x(player);
-		if (data->map.map[tile_y][tile_x] == 1)
-		{
-			player->pos_x += cos(-forward_angle) * 5;
-			player->pos_y += sin(-forward_angle) * 5;
-		}
-	}
-	else if (keycode == 100) // A key - strafe left
-	{
-		float strafe_angle = forward_angle + PI/2; // Perpendicular to forward direction
-		player->pos_x += cos(-strafe_angle) * 5;
-		player->pos_y += sin(-strafe_angle) * 5;
-		tile_y = get_player_tile_y(player);
-		tile_x = get_player_tile_x(player);
-		if (data->map.map[tile_y][tile_x] == 1)
-		{
-			player->pos_x -= cos(-strafe_angle) * 5;
-			player->pos_y -= sin(-strafe_angle) * 5;
-		}
-	}
-	else if (keycode == 97) // D key - strafe right
-	{
-		float strafe_angle = forward_angle - PI/2; // Perpendicular to forward direction
-		player->pos_x += cos(-strafe_angle) * 5;
-		player->pos_y += sin(-strafe_angle) * 5;
-		tile_y = get_player_tile_y(player);
-		tile_x = get_player_tile_x(player);
-		if (data->map.map[tile_y][tile_x] == 1)
-		{
-			player->pos_x -= cos(-strafe_angle) * 5;
-			player->pos_y -= sin(-strafe_angle) * 5;
-		}
-	}
-	else if (keycode == 65361) // Left arrow - turn left
-		player->angle -= 0.1;
-	else if (keycode == 65363) // Right arrow - turn right
-		player->angle += 0.1;
-	else if (keycode == 65364) // Up arrow - look up
-	{
-		player->pitch -= 0.1;
-		if (player->pitch < -1.0) // Limit how far up you can look
-			player->pitch = -1.0;
-	}
-	else if (keycode == 65362) // Down arrow - look down
-	{
-		player->pitch += 0.1;
-		if (player->pitch > 1.0) // Limit how far down you can look
-			player->pitch = 1.0;
-	}
-	player->angle = normalize_angle(player->angle);
-	render_scene(player, data);
-	return (0);
-}
 
 // Initialize map
 void	init_map(t_data *data)
@@ -127,9 +36,8 @@ void	init_map(t_data *data)
 	data->map.width = MAP_SIZE;
 	data->map.height = MAP_SIZE;
 }
-
 // Main function
-int main(void)
+int	main(void)
 {
 	t_data		data;
 	t_player	player;
