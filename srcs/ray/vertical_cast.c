@@ -12,82 +12,82 @@
 
 #include "../main.h"
 
-void	init_vertical_ray(float ra, t_player *player, float *rx, float *ry)
+void	init_vertical_ray(float ray_angle, t_player *player, float *ray_x, float *ray_y)
 {
-	float	ntan;
+	float	negative_tangent;
 
-	ntan = -tan(ra);
-	if (ra > (PI / 2) && ra < (3 * PI / 2))
+	negative_tangent = -tan(ray_angle);
+	if (ray_angle > (PI / 2) && ray_angle < (3 * PI / 2))
 	{
-		*ry = (((int)player->pos_y >> 6) << 6) - 0.0001;
-		*rx = (player->pos_y - *ry) * ntan + player->pos_x;
+		*ray_y = (((int)player->pos_y >> 6) << 6) - 0.0001;
+		*ray_x = (player->pos_y - *ray_y) * negative_tangent + player->pos_x;
 	}
-	else if (ra < (PI / 2) || ra > (3 * PI / 2))
+	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*ry = (((int)player->pos_y >> 6) << 6) + 64;
-		*rx = (player->pos_y - *ry) * ntan + player->pos_x;
+		*ray_y = (((int)player->pos_y >> 6) << 6) + 64;
+		*ray_x = (player->pos_y - *ray_y) * negative_tangent + player->pos_x;
 	}
 	else
 	{
-		*rx = player->pos_x;
-		*ry = player->pos_y;
+		*ray_x = player->pos_x;
+		*ray_y = player->pos_y;
 	}
 }
 
-void	get_vertical_step(float ra, float *xo, float *yo)
+void	get_vertical_step(float ray_angle, float *x_offset, float *y_offset)
 {
-	float	ntan;
+	float	negative_tangent;
 
-	ntan = -tan(ra);
-	if (ra > (PI / 2) && ra < (3 * PI / 2))
+	negative_tangent = -tan(ray_angle);
+	if (ray_angle > (PI / 2) && ray_angle < (3 * PI / 2))
 	{
-		*yo = -64;
-		*xo = -(*yo) * ntan;
+		*y_offset = -64;
+		*x_offset = -(*y_offset) * negative_tangent;
 	}
-	else if (ra < (PI / 2) || ra > (3 * PI / 2))
+	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*yo = 64;
-		*xo = -(*yo) * ntan;
+		*y_offset = 64;
+		*x_offset = -(*y_offset) * negative_tangent;
 	}
 	else
 	{
-		*xo = 0;
-		*yo = 0;
+		*x_offset = 0;
+		*y_offset = 0;
 	}
 }
 
-int	check_vertical_wall(float rx, float ry, t_data *data)
+int	check_vertical_wall(float ray_x, float ray_y, t_data *data)
 {
-	int	mx;
-	int	my;
+	int	map_x;
+	int	map_y;
 
-	mx = (int)(rx) >> 6;
-	my = (int)(ry) >> 6;
-	if (mx >= 0 && mx < 8 && my >= 0 && my < 8 && data->map.map[my][mx] == 1)
+	map_x = (int)(ray_x) >> 6;
+	map_y = (int)(ray_y) >> 6;
+	if (map_x >= 0 && map_x < 8 && map_y >= 0 && map_y < 8 && data->map.map[map_y][map_x] == 1)
 		return (1);
 	return (0);
 }
 
-float	cast_vertical_ray(float ra, t_player *player, t_data *data)
+float	cast_vertical_ray(float ray_angle, t_player *player, t_data *data)
 {
-	float	rx;
-	float	ry;
-	float	xo;
-	float	yo;
-	int		dof;
+	float	ray_x;
+	float	ray_y;
+	float	x_offset;
+	float	y_offset;
+	int		depth_of_field;
 
-	dof = 0;
-	init_vertical_ray(ra, player, &rx, &ry);
-	get_vertical_step(ra, &xo, &yo);
-	if (ra == 0 || ra == PI)
-		dof = 8;
-	while (dof < 8)
+	depth_of_field = 0;
+	init_vertical_ray(ray_angle, player, &ray_x, &ray_y);
+	get_vertical_step(ray_angle, &x_offset, &y_offset);
+	if (ray_angle == 0 || ray_angle == PI)
+		depth_of_field = 8;
+	while (depth_of_field < 8)
 	{
-		if (check_vertical_wall(rx, ry, data))
-			return (dist(player->pos_x, player->pos_y, rx, ry));
-		rx += xo;
-		ry += yo;
-		dof++;
+		if (check_vertical_wall(ray_x, ray_y, data))
+			return (dist(player->pos_x, player->pos_y, ray_x, ray_y));
+		ray_x += x_offset;
+		ray_y += y_offset;
+		depth_of_field++;
 	}
 	return (1000000.0f);
 }

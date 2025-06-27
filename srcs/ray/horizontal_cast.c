@@ -12,82 +12,82 @@
 
 #include "../main.h"
 
-void	init_horizontal_ray(float ra, t_player *player, float *rx, float *ry)
+void	init_horizontal_ray(float ray_angle, t_player *player, float *ray_x, float *ray_y)
 {
-	float	atan;
+	float	inverse_tan;
 
-	atan = -1 / tan(ra);
-	if (ra > PI)
+	inverse_tan = -1 / tan(ray_angle);
+	if (ray_angle > PI)
 	{
-		*rx = (((int)player->pos_x >> 6) << 6) - 0.0001;
-		*ry = (player->pos_x - *rx) * atan + player->pos_y;
+		*ray_x = (((int)player->pos_x >> 6) << 6) - 0.0001;
+		*ray_y = (player->pos_x - *ray_x) * inverse_tan + player->pos_y;
 	}
-	else if (ra < PI)
+	else if (ray_angle < PI)
 	{
-		*rx = (((int)player->pos_x >> 6) << 6) + 64;
-		*ry = (player->pos_x - *rx) * atan + player->pos_y;
+		*ray_x = (((int)player->pos_x >> 6) << 6) + 64;
+		*ray_y = (player->pos_x - *ray_x) * inverse_tan + player->pos_y;
 	}
 	else
 	{
-		*rx = player->pos_x;
-		*ry = player->pos_y;
+		*ray_x = player->pos_x;
+		*ray_y = player->pos_y;
 	}
 }
 
-void	get_horizontal_step(float ra, float *xo, float *yo)
+void	get_horizontal_step(float ray_angle, float *x_offset, float *y_offset)
 {
-	float	atan;
+	float	inverse_tan;
 
-	atan = -1 / tan(ra);
-	if (ra > PI)
+	inverse_tan = -1 / tan(ray_angle);
+	if (ray_angle > PI)
 	{
-		*xo = -64;
-		*yo = -(*xo) * atan;
+		*x_offset = -64;
+		*y_offset = -(*x_offset) * inverse_tan;
 	}
-	else if (ra < PI)
+	else if (ray_angle < PI)
 	{
-		*xo = 64;
-		*yo = -(*xo) * atan;
+		*x_offset = 64;
+		*y_offset = -(*x_offset) * inverse_tan;
 	}
 	else
 	{
-		*xo = 0;
-		*yo = 0;
+		*x_offset = 0;
+		*y_offset = 0;
 	}
 }
 
-int	check_horizontal_wall(float rx, float ry, t_data *data)
+int	check_horizontal_wall(float ray_x, float ray_y, t_data *data)
 {
-	int	mx;
-	int	my;
+	int	map_x;
+	int	map_y;
 
-	mx = (int)(rx) >> 6;
-	my = (int)(ry) >> 6;
-	if (mx >= 0 && mx < 8 && my >= 0 && my < 8 && data->map.map[my][mx] == 1)
+	map_x = (int)(ray_x) >> 6;
+	map_y = (int)(ray_y) >> 6;
+	if (map_x >= 0 && map_x < 8 && map_y >= 0 && map_y < 8 && data->map.map[map_y][map_x] == 1)
 		return (1);
 	return (0);
 }
 
-float	cast_horizontal_ray(float ra, t_player *player, t_data *data)
+float	cast_horizontal_ray(float ray_angle, t_player *player, t_data *data)
 {
-	float	rx;
-	float	ry;
-	float	xo;
-	float	yo;
-	int		dof;
+	float	ray_x;
+	float	ray_y;
+	float	x_offset;
+	float	y_offset;
+	int		depth_of_field;
 
-	dof = 0;
-	init_horizontal_ray(ra, player, &rx, &ry);
-	get_horizontal_step(ra, &xo, &yo);
-	if (ra == 0 || ra == PI)
-		dof = 8;
-	while (dof < 8)
+	depth_of_field = 0;
+	init_horizontal_ray(ray_angle, player, &ray_x, &ray_y);
+	get_horizontal_step(ray_angle, &x_offset, &y_offset);
+	if (ray_angle == 0 || ray_angle == PI)
+		depth_of_field = 8;
+	while (depth_of_field < 8)
 	{
-		if (check_horizontal_wall(rx, ry, data))
-			return (dist(player->pos_x, player->pos_y, rx, ry));
-		rx += xo;
-		ry += yo;
-		dof++;
+		if (check_horizontal_wall(ray_x, ray_y, data))
+			return (dist(player->pos_x, player->pos_y, ray_x, ray_y));
+		ray_x += x_offset;
+		ray_y += y_offset;
+		depth_of_field++;
 	}
 	return (1000000.0f);
 }
