@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/20 14:17:07 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/27 09:51:10 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ typedef struct s_map
 	char	player_dir;
 	int		playerx;
 	int		playery;
+	int		p_f;
 	int		max_x;
 	int		max_y;
+	char	*line;
 }	t_map;
 
 typedef struct s_img_data
@@ -68,7 +70,7 @@ typedef struct s_data
 	t_texture	texture; //texture data
 	t_colors	colors; //color data
 	t_map		map; // map data (can change depending on what will be need)
-	int			error; // if something is wrong, and checker if init is done good
+	int			error; // if something is wrong, and init checker
 }	t_data;
 
 // Window control functions
@@ -93,7 +95,17 @@ int		save_color(char *line, int i, t_data *data, int info);
 int		is_empty_line(char *line);
 int		map_valid(t_data *data);
 char	**save_map(char **file, int start, int end);
-void	free_data(t_data *data); //general free on data struct
-void	ft_free_dc(char ***a); // free char **
+void	free_data(t_data *data);
+void	ft_free_dc(char ***a);
+int		is_player(char letter);
+int		v_p(char **map, int y, int x);
+int		not_v_l(char a);
+char	**save_map(char **file, int start, int end);
+int		check_map(int x, int y, char **map, t_data *data);
+int		color_exist(int a, float *color);
+int		ccolor_i(int i, int *a, int b, t_data *data);
+int		fcolor_i(int i, int *a, int b, t_data *data);
+int		increment(int *i, char *line);
+float	ft_get_float(int b, int i, char *l);
 
 #endif

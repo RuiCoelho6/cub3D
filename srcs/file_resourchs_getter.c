@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:12:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/20 14:15:24 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/25 17:27:43 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	get_resourchs(char **d_f, t_data *data)
 	set_color_neg(data);
 	if (!texture_color_finder(d_f, data))
 		return (0);
-	/*if (!t_and_c_ok(data))
-		return(0);*/
+	if (!t_and_c_ok(data))
+		return (0);
 	if (!map_finder(d_f, data))
 		return (printf("ERROR:Invalid map\n"), 0);
 	if (!map_valid(data))

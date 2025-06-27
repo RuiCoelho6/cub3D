@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 18:10:21 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/20 14:22:07 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/27 09:52:15 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,8 @@ int	map_valid(t_data *data)
 	char	**map;
 	int		x;
 	int		y;
-	int		player_found;
 
-	player_found = 0;
+	data->map.p_f = 0;
 	x = 0;
 	y = 0;
 	map = data->map.map;
@@ -91,26 +90,7 @@ int	map_valid(t_data *data)
 	{
 		while (map[y][x])
 		{
-			if (map[y][x] == '0')
-			{
-				if (!v_p(map, y, x))
-					return (0);
-			}
-			else if (is_player(map[y][x]))
-			{
-				if (player_found)
-					return (0);
-				else
-				{
-					player_found = 1;
-					data->map.playerx = x;
-					data->map.playery = y;
-					data->map.player_dir = map[y][x];
-					if (!v_p(map, y, x))
-						return (0);
-				}
-			}
-			else if (!ft_isws(map[y][x]) && map[y][x] != '1')
+			if (0 == check_map(x, y, map, data))
 				return (0);
 			x++;
 		}

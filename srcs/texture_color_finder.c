@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:17:20 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/20 14:25:30 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/25 17:26:37 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,20 @@ int	texture(char *line, t_data *data)
 	}
 	if (!line[i])
 		return (1);
+	else if (ft_strncmp(line + i, "EA", 2) == 0)
+		return (save_texture(line, i, data, 1));
+	else if (ft_strncmp(line + i, "NO", 2) == 0)
+		return (save_texture(line, i, data, 2));
+	else if (ft_strncmp(line + i, "SO", 2) == 0)
+		return (save_texture(line, i, data, 3));
+	else if (ft_strncmp(line + i, "WE", 2) == 0)
+		return (save_texture(line, i, data, 4));
+	else if (ft_strncmp(line + i, "F", 1) == 0)
+		return (save_color(line, i, data, 1));
+	else if (ft_strncmp(line + i, "C", 1) == 0)
+		return (save_color(line, i, data, 2));
 	else
-	{
-		if (ft_strncmp(line + i, "EA", 2) == 0)
-			return (save_texture(line, i, data, 1));
-		else if (ft_strncmp(line + i, "NO", 2) == 0)
-			return (save_texture(line, i, data, 2));
-		else if (ft_strncmp(line + i, "SO", 2) == 0)
-			return (save_texture(line, i, data, 3));
-		else if (ft_strncmp(line + i, "WE", 2) == 0)
-			return (save_texture(line, i, data, 4));
-		else if (ft_strncmp(line + i, "F", 1) == 0)
-			return (save_color(line, i, data, 1));
-		else if (ft_strncmp(line + i, "C", 1) == 0)
-			return (save_color(line, i, data, 2));
-		else
-			return (-2);
-	}
+		return (-2);
 }
 
 int	texture_color_finder(char **d_f, t_data *data)
