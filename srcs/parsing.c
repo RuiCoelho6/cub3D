@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:38:02 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/17 13:39:43 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/20 14:22:55 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ int	check_file(char	*map_file)
 	return (0);
 }
 
-int	parsing(char **av)
+int	parsing_and_init(char *file, t_data *data)
 {
-	int	i;
+	char	**data_file;
 
-	i = 0;
-	while (av[i])
-	{
-		printf("%s\n", av[i]);
-		i++;
-	}
-	return (1);
+	data_file = open_map(file);
+	if (data_file == NULL)
+		return (0);
+	if (!get_resourchs(data_file, data))
+		return (ft_free_dc(&data_file), 0);
+	return (ft_free_dc(&data_file), 1);
 }
