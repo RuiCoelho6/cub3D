@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 15:20:04 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:13:27 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 	if (!parsing_and_init(av[1], &data))
 		return (free_data(&data), 1);
 	init_window(&data);
-	init_player(&player);
+	init_player(&player, &data);
 	data.player = &player;
 	render_scene(&player, &data);
 	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);

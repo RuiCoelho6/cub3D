@@ -6,17 +6,24 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/26 14:30:00 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:10:31 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-void	init_player(t_player *player)
+void	init_player(t_player *player, t_data *data)
 {
 	player->pos_x = 300;
 	player->pos_y = 300;
-	player->angle = PI;
+	if (strcmp(&data->map.player_direction, "N"))
+		player->angle = PI / 2;
+	else if (strcmp(&data->map.player_direction, "E"))
+		player->angle = 2 * PI;
+	else if (strcmp(&data->map.player_direction, "S"))
+		player->angle = (3 * PI) / 2;
+	else if (strcmp(&data->map.player_direction, "W"))
+		player->angle = PI;
 	player->pitch = 0;
 	player->dir_x = cos(player->angle);
 	player->dir_y = sin(player->angle);
