@@ -13,17 +13,34 @@
 #ifndef MAIN_H
 # define MAIN_H
 
+# define PI 3.1415926535
+# define DR 0.0174533// one degree in radians
+# define MAP_SIZE 8
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 512
+
+// Colors
+# define WALL_NORTH 0xFF0000// Red
+# define WALL_SOUTH 0x00FF00// Green
+# define WALL_EAST 0x0000FF// Blue
+# define WALL_WEST 0xFFFF00// Yellow
+# define CEILING_COLOR 0x87CEEB// Sky blue
+# define FLOOR_COLOR 0x8B4513// Brown
+
 # include <aio.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 # include <X11/keysym.h>
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
 # include "../libs/minilibx-linux/mlx_int.h"
-# include "window.h"
+# include "ray/draw/draw.h"
+# include "ray/ray.h"
+# include "player/player.h"
 
 typedef struct s_colors
 {
@@ -41,6 +58,7 @@ typedef struct s_texture
 
 typedef struct s_map
 {
+
 	char	**map;
 	char	player_direction;
 	int		start_map;
@@ -51,6 +69,7 @@ typedef struct s_map
 	int		max_x;
 	int		max_y;
 	char	*line;
+
 }	t_map;
 
 typedef struct s_img_data
@@ -64,20 +83,47 @@ typedef struct s_img_data
 
 typedef struct s_data
 {
-	void		*mlx_ptr; //mlx handle
-	void		*win_ptr; //mlx handle
+	void		*mlx_ptr;// mlx handle
+	void		*win_ptr;// mlx handle
 	t_img_data	*img;
-	t_texture	texture; //texture data
-	t_colors	colors; //color data
-	t_map		map; // map data (can change depending on what will be need)
-	int			error; // if something is wrong, and init checker
+	t_player	*player;
+	t_texture	texture;// texture data
+	t_colors	colors;// color data
+	t_map		map;// map data (can change depending on what will be need)
+	int			error;// if something is wrong, and checker if init is done good
 }	t_data;
 
 // Window control functions
-int		handle_no_event(void);
-int		murder_window(t_data *mlx);
-int		murder_window_key(int keysym, t_data *mlx);
-void	my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
+void			init_window(t_data *data);
+int				handle_no_event(void);
+int				murder_window(t_data *mlx);
+int				murder_window_key(int keysym, t_data *mlx);
+void			my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
+
+// Raycasting functions
+t_ray_result	ray_caster(float ra, t_player *player, t_data *data);
+float			calculate_wall_height(float distance, t_map map);
+
+// Casting horizontal rays
+void			init_horizontal_ray(float ra, t_player *player,
+					float *rx, float *ry);
+int				check_horizontal_wall(float rx, float ry, t_data *data);
+float			cast_horizontal_ray(float ra, t_player *player, t_data *data);
+
+// Casting horizontal rays
+void			init_vertical_ray(float ra, t_player *player,
+					float *rx, float *ry);
+int				check_vertical_wall(float rx, float ry, t_data *data);
+float			cast_vertical_ray(float ra, t_player *player, t_data *data);
+
+// Drawing functions
+void			draw_ray_column(t_data *data, int x, t_ray_result ray_result);
+void			render_scene(t_player *player, t_data *data);
+void			set_colors(t_wall wall, t_data *data, int x);
+
+// Parsing functions
+int				parsing(char **av);
+int				check_file(char	*map_file);
 
 //parsing and init
 int		parsing_and_init(char *file, t_data *data);
@@ -107,5 +153,16 @@ int		ccolor_i(int i, int *a, int b, t_data *data);
 int		fcolor_i(int i, int *a, int b, t_data *data);
 int		increment(int *i, char *line);
 float	ft_get_float(int b, int i, char *l);
+// Player functions
+void			init_player(t_player *player);
+int				key_hook(int keycode, t_data *data);
+void			move_forward(t_player *player, t_data *data,
+					int tile_x, int tile_y);
+void			move_backward(t_player *player, t_data *data,
+					int tile_x, int tile_y);
+void			strafe_left(t_player *player, t_data *data,
+					int tile_x, int tile_y);
+void			strafe_right(t_player *player, t_data *data,
+					int tile_x, int tile_y);
 
 #endif

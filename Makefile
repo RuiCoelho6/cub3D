@@ -16,13 +16,21 @@ FLAGS = -Wall -Wextra -Werror
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes
 RM = rm -f
 
+
 SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c \
 	./srcs/free_d.c ./srcs/map_stf.c ./srcs/color_getter.c ./srcs/texture_getter.c \
 	./srcs/texture_color_finder.c ./srcs/parsing.c ./srcs/file_utils.c ./srcs/file_resourchs_getter.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
-	./srcs/window_controls.c \
 	./srcs/main.c \
+  ./srcs/window_controls.c\
+	./srcs/ray/horizontal_cast.c\
+	./srcs/ray/vertical_cast.c\
+	./srcs/ray/ray_caster.c\
+	./srcs/ray/draw/draw_utils.c\
+	./srcs/ray/draw/draw.c\
+	./srcs/player/player.c\
+	./srcs/player/movement_controls.c\
 
 OBJDIR = Objs
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
@@ -43,11 +51,11 @@ $(NAME): libft $(OBJS)
 
 all: $(NAME)
 
-s: clean mlx $(NAME)
-	@./$(NAME)
+s: fclean mlx all
+	./$(NAME)
 
 v: clean mlx $(NAME)
-	@clear && $(VAL) ./$(NAME)
+	@$(VAL) ./$(NAME)
 
 libft:
 	@$(MAKE) -C $(LIB_DIR) > /dev/null
