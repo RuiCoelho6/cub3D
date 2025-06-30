@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 17:15:31 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/30 17:32:46 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,9 +273,9 @@ int find_player_start_safe(t_data *data, t_player *player)
                     player->pos_y = i * 64 + 32;
                     
                     // Set starting angle
-                    if (cell == 'N')
+                    if (cell == 'S')
                         player->angle = 3 * PI / 2;
-                    else if (cell == 'S')
+                    else if (cell == 'N')
                         player->angle = PI / 2;
                     else if (cell == 'W')
                         player->angle = PI;
