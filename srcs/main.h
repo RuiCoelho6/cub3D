@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 16:08:15 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:37:53 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 typedef struct s_colors
 {
 	float	fcolor[3]; //floor color
-	float	ccolor[3]; //Ceiling color ->tem de ser float
+	float	ccolor[3]; //Ceiling color
 }	t_colors;
 
 typedef struct s_texture

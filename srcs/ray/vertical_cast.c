@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/17 15:27:21 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:52:40 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,15 @@ void	get_vertical_step(float ray_angle, float *x_offset, float *y_offset)
 	}
 }
 
-int	check_vertical_wall(float ray_x, float ray_y, t_data *data)
+int check_vertical_wall(float rx, float ry, t_data *data)
 {
 	int	map_x;
 	int	map_y;
 
-	map_x = (int)(ray_x) >> 6;
-	map_y = (int)(ray_y) >> 6;
-	if (map_x >= 0 && map_x < 8 && map_y >= 0 && map_y < 8 && data->map.map[map_y][map_x] == 1)
+	map_x = (int)(rx) >> 6;
+	map_y = (int)(ry) >> 6;
+	if (map_x >= 0 && map_x < data->map.max_x && map_y >= 0 && map_y < data->map.max_y && 
+		data->map.map[map_y][map_x] == '1')
 		return (1);
 	return (0);
 }
