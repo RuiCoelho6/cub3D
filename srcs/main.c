@@ -3,41 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/20 14:10:24 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/30 15:20:04 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// Initialize map
-void	init_map(t_data *data)
-{
-	int	i;
-	int	j;
-	int	map_data[MAP_SIZE][MAP_SIZE] = {
-		{1,1,1,1,1,1,1,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,1,0,0,1,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,1,0,0,1,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1}
-	};
-	for (i = 0; i < MAP_SIZE; i++)
-	{
-		for (j = 0; j < MAP_SIZE; j++)
-			data->map.map[i][j] = map_data[i][j];
-	}
-	data->map.size = 64;
-	data->map.width = MAP_SIZE;
-	data->map.height = MAP_SIZE;
-}
 // Main function
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_data		data;
 	t_player	player;

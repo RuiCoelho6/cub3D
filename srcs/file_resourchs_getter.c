@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_resourchs_getter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:12:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/25 17:27:43 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/30 15:29:54 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	map_finder(char **d_f, t_data *data)
 		return (0);
 	data->map.map = save_map(d_f, data->map.start_map, i);
 	data->map.max_y = i;
+	data->map.size = MAP_SIZE;
 	if (!data->map.map)
 		return (0);
 	while (d_f[i])
@@ -87,8 +88,8 @@ int	get_resourchs(char **d_f, t_data *data)
 	set_color_neg(data);
 	if (!texture_color_finder(d_f, data))
 		return (0);
-	if (!t_and_c_ok(data))
-		return (0);
+	/*if (!t_and_c_ok(data))
+		return (0);*/
 	if (!map_finder(d_f, data))
 		return (printf("ERROR:Invalid map\n"), 0);
 	if (!map_valid(data))

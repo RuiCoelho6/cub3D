@@ -23,7 +23,7 @@ SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
 	./srcs/main.c \
-  ./srcs/window_controls.c\
+	./srcs/window_controls.c\
 	./srcs/ray/horizontal_cast.c\
 	./srcs/ray/vertical_cast.c\
 	./srcs/ray/ray_caster.c\
@@ -52,7 +52,7 @@ $(NAME): libft $(OBJS)
 all: $(NAME)
 
 s: fclean mlx all
-	./$(NAME)
+	./$(NAME) maps/strange_valid_map.cub
 
 v: clean mlx $(NAME)
 	@$(VAL) ./$(NAME)
