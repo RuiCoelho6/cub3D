@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_cast.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 14:14:15 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:57:40 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	init_horizontal_ray(float ray_angle, t_player *player, float *ray_x, float 
 	inverse_tan = -1 / tan(ray_angle);
 	if (ray_angle > PI)
 	{
-		*ray_x = (((int)player->pos_x >> 5) << 5) - 0.0001;
+		*ray_x = (((int)player->pos_x >> 6) << 6) - 0.0001;
 		*ray_y = (player->pos_x - *ray_x) * inverse_tan + player->pos_y;
 	}
 	else if (ray_angle < PI)
 	{
-		*ray_x = (((int)player->pos_x >> 5) << 5) + MAP_SIZE;
+		*ray_x = (((int)player->pos_x >> 6) << 6) + MAP_SIZE;
 		*ray_y = (player->pos_x - *ray_x) * inverse_tan + player->pos_y;
 	}
 	else
@@ -60,8 +60,8 @@ int check_horizontal_wall(float rx, float ry, t_data *data)
 	int	map_x;
 	int	map_y;
 
-	map_x = (int)(rx) >> 5;
-	map_y = (int)(ry) >> 5;
+	map_x = (int)(rx) >> 6;
+	map_y = (int)(ry) >> 6;
 	if (map_x < 0 || map_x >= data->map.max_x
 		|| map_y < 0 || map_y >= data->map.max_y)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_cast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 14:16:41 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:58:34 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	init_vertical_ray(float ray_angle, t_player *player, float *ray_x, float *r
 	negative_tangent = -tan(ray_angle);
 	if (ray_angle > (PI / 2) && ray_angle < (3 * PI / 2))
 	{
-		*ray_y = (((int)player->pos_y >> 5) << 5) - 0.0001;
+		*ray_y = (((int)player->pos_y >> 6) << 6) - 0.0001;
 		*ray_x = (player->pos_y - *ray_y) * negative_tangent + player->pos_x;
 	}
 	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*ray_y = (((int)player->pos_y >> 5) << 5) + MAP_SIZE;
+		*ray_y = (((int)player->pos_y >> 6) << 6) + MAP_SIZE;
 		*ray_x = (player->pos_y - *ray_y) * negative_tangent + player->pos_x;
 	}
 	else
@@ -61,8 +61,8 @@ int check_vertical_wall(float rx, float ry, t_data *data)
 	int	map_x;
 	int	map_y;
 
-	map_x = (int)(rx) >> 5;
-	map_y = (int)(ry) >> 5;
+	map_x = (int)(rx) >> 6;
+	map_y = (int)(ry) >> 6;
 	if (map_x < 0 || map_x >= data->map.max_x || 
 		map_y < 0 || map_y >= data->map.max_y)
 		return (1);

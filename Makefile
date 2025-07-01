@@ -17,7 +17,7 @@ VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-o
 RM = rm -f
 
 
-SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c \
+SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c ./srcs/init_texture.c \
 	./srcs/free_d.c ./srcs/map_stf.c ./srcs/color_getter.c ./srcs/texture_getter.c \
 	./srcs/texture_color_finder.c ./srcs/parsing.c ./srcs/file_utils.c ./srcs/file_resourchs_getter.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
@@ -31,6 +31,7 @@ SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c \
 	./srcs/ray/draw/draw.c\
 	./srcs/player/player.c\
 	./srcs/player/movement_controls.c\
+	./srcs/float_color_init.c \
 
 OBJDIR = Objs
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)

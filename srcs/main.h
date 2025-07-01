@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 16:09:55 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:35:43 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define PI 3.1415926535
 # define DR 0.0174533// one degree in radians
-# define MAP_SIZE 32
+# define MAP_SIZE 64
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 512
 
@@ -46,6 +46,7 @@ typedef struct s_texture
 	char	*so;
 	char	*we;
 	char	*ea;
+	char *texture[3];
 }	t_texture;
 
 typedef struct s_map
@@ -119,6 +120,7 @@ int				check_file(char	*map_file);
 
 //parsing and init
 int		parsing_and_init(char *file, t_data *data);
+void	init_texture(t_data *data);
 int		check_file(char	*map_file);
 char	**open_map(char *filename);
 char	*get_next_line(int fd);
@@ -156,5 +158,9 @@ void			strafe_left(t_player *player, t_data *data,
 					int tile_x, int tile_y);
 void			strafe_right(t_player *player, t_data *data,
 					int tile_x, int tile_y);
+
+
+void	put_image(int y, int x, void *a, t_data *data);
+int		c_f_color(float *colors);
 
 #endif

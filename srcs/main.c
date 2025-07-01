@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 14:10:05 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:37:04 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	main(int ac, char **av)
 	init_window(&data);
 	find_player_start(&data);
 	init_player(&player, &data);
+    //init_texture(&data);
 	data.player = &player;
 	render_scene(&player, &data);
 	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
