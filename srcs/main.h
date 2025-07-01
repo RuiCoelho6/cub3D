@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 17:23:23 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:01:09 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define PI 3.1415926535
 # define DR 0.0174533// one degree in radians
-# define MAP_SIZE 8
+# define MAP_SIZE 32
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 512
 

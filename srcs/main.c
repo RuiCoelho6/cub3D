@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 17:32:46 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:07:28 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,184 +37,8 @@ void calculate_map_dimensions(t_data *data)
     data->map.max_x = max_width;
 }
 
-// Debug version to help find issues with player spawn
-int find_player_start_debug(t_data *data, t_player *player)
-{
-    int i, j;
-    char player_chars[] = {'N', 'S', 'W', 'E'};
-    int player_found = 0;
-    
-    // Make sure map dimensions are calculated
-    calculate_map_dimensions(data);
-    
-    printf("=== DEBUGGING PLAYER SPAWN ===\n");
-    printf("Map dimensions: %d x %d\n", data->map.max_x, data->map.max_y);
-    
-    // Print the entire map for debugging
-    printf("Map contents:\n");
-    for (i = 0; i < data->map.max_y; i++)
-    {
-        if (data->map.map[i])
-        {
-            printf("Row %2d: [%s] (length: %d)\n", i, data->map.map[i], (int)ft_strlen(data->map.map[i]));
-        }
-        else
-        {
-            printf("Row %2d: [NULL]\n", i);
-        }
-    }
-    
-    // Search for player characters
-    for (i = 0; i < data->map.max_y; i++)
-    {
-        if (!data->map.map[i])
-            continue;
-            
-        int row_length = ft_strlen(data->map.map[i]);
-        
-        for (j = 0; j < row_length; j++)
-        {
-            char cell = data->map.map[i][j];
-            
-            // Check if this cell contains a player start position
-            for (int k = 0; k < 4; k++)
-            {
-                if (cell == player_chars[k])
-                {
-                    printf("Found player character '%c' at position (%d, %d)\n", cell, j, i);
-                    
-                    if (player_found)
-                    {
-                        printf("Error: Multiple player starting positions found!\n");
-                        return (0);
-                    }
-                    
-                    player_found = 1;
-                    
-                    // Set player position (center in tile)
-                    // Using 64 pixels per tile to match your raycasting bit shifting
-                    player->pos_x = j * 64 + 32; // Center in tile
-                    player->pos_y = i * 64 + 32; // Center in tile
-                    
-                    // Set starting angle based on direction
-                    if (cell == 'N')
-                        player->angle = 3 * PI / 2;  // Facing North (up)
-                    else if (cell == 'S')
-                        player->angle = PI / 2;      // Facing South (down)  
-                    else if (cell == 'W')
-                        player->angle = PI;          // Facing West (left)
-                    else if (cell == 'E')
-                        player->angle = 0;           // Facing East (right)
-                    
-                    // Store player info in map structure
-                    data->map.playerx = j;
-                    data->map.playery = i;
-                    data->map.player_dir = cell;
-                    data->map.player_direction = cell;
-                    
-                    // Replace the player character with empty space
-                    data->map.map[i][j] = '0';
-                    
-                    printf("Player spawned at map position (%d, %d) with direction '%c'\n", 
-                           j, i, cell);
-                    printf("Player world position: (%.2f, %.2f)\n", 
-                           player->pos_x, player->pos_y);
-                    printf("Player angle: %.2f radians\n", player->angle);
-                }
-            }
-        }
-    }
-    
-    if (!player_found)
-    {
-        printf("Error: No player starting position (N/S/W/E) found in map!\n");
-        printf("Searched through %d rows\n", data->map.max_y);
-    }
-    
-    printf("=== END DEBUG ===\n");
-    return (player_found);
-}
-
-// Improved find_player_start function
-int find_player_start(t_data *data, t_player *player)
-{
-    int i, j;
-    char player_chars[] = {'N', 'S', 'W', 'E'};
-    int player_found = 0;
-    
-    // Make sure map dimensions are calculated
-    calculate_map_dimensions(data);
-    
-    for (i = 0; i < data->map.max_y; i++)
-    {
-        // Check if this row exists and get its length
-        if (!data->map.map[i])
-            continue;
-            
-        int row_length = ft_strlen(data->map.map[i]);
-        
-        for (j = 0; j < row_length; j++)
-        {
-            char cell = data->map.map[i][j];
-            
-            // Check if this cell contains a player start position
-            for (int k = 0; k < 4; k++)
-            {
-                if (cell == player_chars[k])
-                {
-                    // Check if we already found a player (there should be only one)
-                    if (player_found)
-                    {
-                        printf("Error: Multiple player starting positions found!\n");
-                        return (0);
-                    }
-                    
-                    player_found = 1;
-                    
-                    // Set player position (center in tile)
-                    // Using 64 pixels per tile to match your raycasting bit shifting
-                    player->pos_x = j * 64 + 32; // Center in tile
-                    player->pos_y = i * 64 + 32; // Center in tile
-                    
-                    // Set starting angle based on direction
-                    if (cell == 'N')
-                        player->angle = 3 * PI / 2;  // Facing North (up)
-                    else if (cell == 'S')
-                        player->angle = PI / 2;      // Facing South (down)  
-                    else if (cell == 'W')
-                        player->angle = PI;          // Facing West (left)
-                    else if (cell == 'E')
-                        player->angle = 0;           // Facing East (right)
-                    
-                    // Store player info in map structure
-                    data->map.playerx = j;
-                    data->map.playery = i;
-                    data->map.player_dir = cell;
-                    data->map.player_direction = cell;
-                    
-                    // Replace the player character with empty space
-                    data->map.map[i][j] = '0';
-                    
-                    printf("Player spawned at map position (%d, %d) with direction '%c'\n", 
-                           j, i, cell);
-                    printf("Player world position: (%.2f, %.2f)\n", 
-                           player->pos_x, player->pos_y);
-                }
-            }
-        }
-    }
-    
-    if (!player_found)
-    {
-        printf("Error: No player starting position (N/S/W/E) found in map!\n");
-        return (0);
-    }
-    
-    return (1); // Success
-}
-
 // Alternative version that validates the spawn position
-int find_player_start_safe(t_data *data, t_player *player)
+int find_player_start(t_data *data, t_player *player)
 {
     int i, j;
     char player_chars[] = {'N', 'S', 'W', 'E'};
@@ -269,8 +93,8 @@ int find_player_start_safe(t_data *data, t_player *player)
                     player_found = 1;
                     
                     // Set player position using 64-pixel tiles
-                    player->pos_x = j * 64 + 32;
-                    player->pos_y = i * 64 + 32;
+                    player->pos_x = j * 32 + 16;
+                    player->pos_y = i * 32 + 16;
                     
                     // Set starting angle
                     if (cell == 'S')
@@ -316,7 +140,7 @@ int	main(int ac, char **av)
 	init_window(&data);
 	init_player(&player, &data);
 	data.player = &player;
-	if (!find_player_start_safe(&data, &player))
+	if (!find_player_start(&data, &player))
     {
         printf("Error: No player starting position (N/S/W/E) found in map!\n");
         return (1);
