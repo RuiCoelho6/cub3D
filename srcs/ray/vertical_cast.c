@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 11:17:59 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:23:33 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_vertical_ray(float ray_angle, t_player *player, float *ray_x, float *r
 	}
 	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*ray_y = (((int)player->pos_y >> 5) << 5) + 32;
+		*ray_y = (((int)player->pos_y >> 5) << 5) + MAP_SIZE;
 		*ray_x = (player->pos_y - *ray_y) * negative_tangent + player->pos_x;
 	}
 	else
@@ -41,12 +41,12 @@ void	get_vertical_step(float ray_angle, float *x_offset, float *y_offset)
 	negative_tangent = -tan(ray_angle);
 	if (ray_angle > (PI / 2) && ray_angle < (3 * PI / 2))
 	{
-		*y_offset = -32;
+		*y_offset = -MAP_SIZE;
 		*x_offset = -(*y_offset) * negative_tangent;
 	}
 	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*y_offset = 32;
+		*y_offset = MAP_SIZE;
 		*x_offset = -(*y_offset) * negative_tangent;
 	}
 	else
@@ -91,8 +91,8 @@ float	cast_vertical_ray(float ray_angle, t_player *player, t_data *data)
 		ray_x += x_offset;
 		ray_y += y_offset;
 		depth_of_field++;
-		if (ray_x < -100 || ray_x > (data->map.max_x * 32 + 100) ||
-			ray_y < -100 || ray_y > (data->map.max_y * 32 + 100))
+		if (ray_x < -100 || ray_x > (data->map.max_x * MAP_SIZE + 100)
+			|| ray_y < -100 || ray_y > (data->map.max_y * MAP_SIZE + 100))
  			break ;
 	}
 	return (1000000.0f);

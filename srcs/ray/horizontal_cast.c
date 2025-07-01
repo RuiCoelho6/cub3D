@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 11:18:47 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:23:38 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_horizontal_ray(float ray_angle, t_player *player, float *ray_x, float 
 	}
 	else if (ray_angle < PI)
 	{
-		*ray_x = (((int)player->pos_x >> 5) << 5) + 32;
+		*ray_x = (((int)player->pos_x >> 5) << 5) + MAP_SIZE;
 		*ray_y = (player->pos_x - *ray_x) * inverse_tan + player->pos_y;
 	}
 	else
@@ -41,12 +41,12 @@ void	get_horizontal_step(float ray_angle, float *x_offset, float *y_offset)
 	inverse_tan = -1 / tan(ray_angle);
 	if (ray_angle > PI)
 	{
-		*x_offset = -32;
+		*x_offset = -MAP_SIZE;
 		*y_offset = -(*x_offset) * inverse_tan;
 	}
 	else if (ray_angle < PI)
 	{
-		*x_offset = 32;
+		*x_offset = MAP_SIZE;
 		*y_offset = -(*x_offset) * inverse_tan;
 	}
 	else
@@ -90,8 +90,8 @@ float	cast_horizontal_ray(float ray_angle, t_player *player, t_data *data)
 		ray_x += x_offset;
 		ray_y += y_offset;
 		depth_of_field++;
-		if (ray_x < -100 || ray_x > (data->map.max_x * 32 + 100) ||
-			ray_y < -100 || ray_y > (data->map.max_y * 32 + 100))
+		if (ray_x < -100 || ray_x > (data->map.max_x * MAP_SIZE + 100)
+			|| ray_y < -100 || ray_y > (data->map.max_y * MAP_SIZE + 100))
 			break ;
 	}
 	return (1000000.0f);

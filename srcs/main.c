@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 11:07:28 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 11:21:58 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int find_player_start(t_data *data, t_player *player)
                     player_found = 1;
                     
                     // Set player position using 64-pixel tiles
-                    player->pos_x = j * 32 + 16;
-                    player->pos_y = i * 32 + 16;
+                    player->pos_x = j * MAP_SIZE + (MAP_SIZE / 2);
+                    player->pos_y = i * MAP_SIZE + (MAP_SIZE / 2);
                     
                     // Set starting angle
                     if (cell == 'S')
