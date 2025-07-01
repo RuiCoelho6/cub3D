@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 13:33:41 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 14:14:15 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../main.h"
+#include "../../main.h"
 
 void	init_horizontal_ray(float ray_angle, t_player *player, float *ray_x, float *ray_y)
 {
