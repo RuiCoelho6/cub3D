@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 11:23:33 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:33:52 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ float	cast_vertical_ray(float ray_angle, t_player *player, t_data *data)
 	get_vertical_step(ray_angle, &x_offset, &y_offset);
 	if (ray_angle == PI / 2 || ray_angle == (3 * PI) / 2)
 		return (1000000.0f);
-	while (depth_of_field < 16)
+	while (depth_of_field < 32)
 	{
 		if (check_vertical_wall(ray_x, ray_y, data))
 			return (dist(player->pos_x, player->pos_y, ray_x, ray_y));

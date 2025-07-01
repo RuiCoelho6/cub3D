@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 11:23:38 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:33:41 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ float	cast_horizontal_ray(float ray_angle, t_player *player, t_data *data)
 	get_horizontal_step(ray_angle, &x_offset, &y_offset);
 	if (ray_angle == 0 || ray_angle == PI)
 		return (1000000.0f);
-	while (depth_of_field < 16)
+	while (depth_of_field < 32)
 	{
 		if (check_horizontal_wall(ray_x, ray_y, data))
 			return (dist(player->pos_x, player->pos_y, ray_x, ray_y));

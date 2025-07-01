@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 17:31:56 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 14:04:49 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_player(t_player *player, t_data *data)
 {
-	player->pos_x = 0;
-	player->pos_y = 0;
+	player->pos_x = data->map.playerx * MAP_SIZE + (MAP_SIZE / 2);
+	player->pos_y = data->map.playery * MAP_SIZE + (MAP_SIZE / 2);
 	if (strcmp(&data->map.player_direction, "S"))
 		player->angle = (3 * PI) / 2;
 	else if (strcmp(&data->map.player_direction, "E"))

@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 11:01:09 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:26:13 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@
 # define MAP_SIZE 32
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 512
-
-// Colors
-# define WALL_NORTH 0xFF0000// Red
-# define WALL_SOUTH 0x00FF00// Green
-# define WALL_EAST 0x0000FF// Blue
-# define WALL_WEST 0xFFFF00// Yellow
-# define CEILING_COLOR 0x87CEEB// Sky blue
-# define FLOOR_COLOR 0x8B4513// Brown
 
 # include <aio.h>
 # include <fcntl.h>
@@ -120,7 +112,6 @@ float			cast_vertical_ray(float ra, t_player *player, t_data *data);
 // Drawing functions
 void			draw_ray_column(t_data *data, int x, t_ray_result ray_result);
 void			render_scene(t_player *player, t_data *data);
-void			set_colors(t_wall wall, t_data *data, int x);
 
 // Parsing functions
 int				parsing(char **av);
