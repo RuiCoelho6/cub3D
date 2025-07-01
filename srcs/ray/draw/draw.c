@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/26 14:17:29 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:21:48 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_colors(t_wall wall, t_data *data, int x)
 	y = 0;
 	while (y < wall.start)
 	{
-		my_mlx_pixel_put(data->img, x, y, CEILING_COLOR);
+		my_mlx_pixel_put(data->img, x, y, CEILING_COLOR); // falta aplicar a cor pedida
 		y++;
 	}
 	y = wall.start;
@@ -31,7 +31,7 @@ void	set_colors(t_wall wall, t_data *data, int x)
 	y = wall.end;
 	while (y < WIN_HEIGHT)
 	{
-		my_mlx_pixel_put(data->img, x, y, FLOOR_COLOR);
+		my_mlx_pixel_put(data->img, x, y, FLOOR_COLOR); // falta aplicar a cor pedida
 		y++;
 	}
 }

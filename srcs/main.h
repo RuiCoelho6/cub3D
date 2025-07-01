@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/30 15:20:54 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:09:55 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,9 @@
 
 # define PI 3.1415926535
 # define DR 0.0174533// one degree in radians
-# define MAP_SIZE 8
+# define MAP_SIZE 32
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 512
-
-// Colors
-# define WALL_NORTH 0xFF0000// Red
-# define WALL_SOUTH 0x00FF00// Green
-# define WALL_EAST 0x0000FF// Blue
-# define WALL_WEST 0xFFFF00// Yellow
-# define CEILING_COLOR 0x87CEEB// Sky blue
-# define FLOOR_COLOR 0x8B4513// Brown
 
 # include <aio.h>
 # include <fcntl.h>
@@ -45,7 +37,7 @@
 typedef struct s_colors
 {
 	float	fcolor[3]; //floor color
-	float	ccolor[3]; //Ceiling color ->tem de ser float
+	float	ccolor[3]; //Ceiling color
 }	t_colors;
 
 typedef struct s_texture
@@ -120,7 +112,6 @@ float			cast_vertical_ray(float ra, t_player *player, t_data *data);
 // Drawing functions
 void			draw_ray_column(t_data *data, int x, t_ray_result ray_result);
 void			render_scene(t_player *player, t_data *data);
-void			set_colors(t_wall wall, t_data *data, int x);
 
 // Parsing functions
 int				parsing(char **av);
@@ -155,7 +146,7 @@ int		fcolor_i(int i, int *a, int b, t_data *data);
 int		increment(int *i, char *line);
 float	ft_get_float(int b, int i, char *l);
 // Player functions
-void			init_player(t_player *player);
+void			init_player(t_player *player, t_data *data);
 int				key_hook(int keycode, t_data *data);
 void			move_forward(t_player *player, t_data *data,
 					int tile_x, int tile_y);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_getter_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:42:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/27 09:50:36 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/06/30 16:00:46 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	fcolor_i(int i, int *a, int b, t_data *data)
 		else if (data->map.line && data->map.line[i] == ',' && (*a) < 2)
 		{
 			data->colors.fcolor[*a] = ft_get_float(b, i, data->map.line);
-			a++;
+			(*a)++;
 		}
 		else if (data->map.line && (*a) == 2 && i != b)
 		{
 			data->colors.fcolor[*a] = ft_get_float(b, i, data->map.line);
-			a++;
+			(*a)++;
 		}
 	}
 	return (0);
@@ -67,12 +67,12 @@ int	ccolor_i(int i, int *a, int b, t_data *data)
 		else if (data->map.line && data->map.line[i] == ',' && (*a) < 2)
 		{
 			data->colors.ccolor[*a] = ft_get_float(b, i, data->map.line);
-			a++;
+			(*a)++;
 		}
 		else if (data->map.line && (*a) == 2 && i != b)
 		{
 			data->colors.ccolor[*a] = ft_get_float(b, i, data->map.line);
-			a++;
+			(*a)++;
 		}
 	}
 	return (0);

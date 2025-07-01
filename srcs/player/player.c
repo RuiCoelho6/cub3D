@@ -6,20 +6,25 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/26 14:30:00 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:23:04 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../main.h"
 
-void	init_player(t_player *player)
+void	init_player(t_player *player, t_data *data)
 {
-	player->pos_x = 300;
-	player->pos_y = 300;
-	player->angle = PI;
+	player->pos_x = data->map.playerx * MAP_SIZE + (MAP_SIZE / 2);
+	player->pos_y = data->map.playery * MAP_SIZE + (MAP_SIZE / 2);
+	if (data->map.player_dir == 'E')
+		player->angle = (3 * PI) / 2;
+	else if (data->map.player_dir == 'S')
+		player->angle = 0;
+	else if (data->map.player_dir == 'W')
+		player->angle = PI / 2;
+	else if (data->map.player_dir == 'N')
+		player->angle = PI;
 	player->pitch = 0;
-	player->dir_x = cos(player->angle);
-	player->dir_y = sin(player->angle);
 }
 
 void	check_movement(t_data *data, int keycode, int tile_x, int tile_y)
