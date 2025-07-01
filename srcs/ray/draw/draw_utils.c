@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:04:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/26 14:19:51 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 16:26:59 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	get_wall_side(float ray_angle, int hit_horizontal)
 int	get_wall_color(int wall_side)
 {
 	if (wall_side == 0)
-		return (WALL_NORTH);
-	else if (wall_side == 1)
-		return (WALL_SOUTH);
-	else if (wall_side == 2)
 		return (WALL_WEST);
-	else
+	else if (wall_side == 1)
 		return (WALL_EAST);
+	else if (wall_side == 2)
+		return (WALL_NORTH);
+	else
+		return (WALL_SOUTH);
 }
