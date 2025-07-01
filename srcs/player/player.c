@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 14:04:49 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:37:47 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	init_player(t_player *player, t_data *data)
 	else if (strcmp(&data->map.player_direction, "W"))
 		player->angle = PI;
 	player->pitch = 0;
-	player->dir_x = cos(player->angle);
-	player->dir_y = sin(player->angle);
 }
 
 void	check_movement(t_data *data, int keycode, int tile_x, int tile_y)
