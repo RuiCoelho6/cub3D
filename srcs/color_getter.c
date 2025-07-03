@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 11:36:34 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/27 09:45:53 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/03 11:20:54 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ float	ft_get_float(int b, int i, char *l)
 	char		*number;
 	float		a;
 
-	number = ft_substr(l, b, i);
+	i--;
+	number = ft_substr(l, b, i - b + 1);
 	a = ft_atof(number);
 	if (number)
 		free (number);
@@ -37,46 +38,46 @@ float	ft_get_float(int b, int i, char *l)
 
 int	ccolor_getter(char *line, int i, t_data *data)
 {
-	int	a;
-	int	b;
+	int a;
 
-	b = 0;
 	a = 0;
 	if (color_exist(a, data->colors.ccolor) == -3)
 		return (-3);
 	data->map.line = line;
 	while (line[i])
 	{
-		if (ft_isalnum(line[i]))
-		{
-			if (ccolor_i(i, &a, b, data) == 1)
-				break ;
-		}
-		b = increment(&i, line);
+		while (line[i] && ft_isws(line[i]))
+			i++;
+		if (!line[i])
+			break;
+		if (!ft_isnum(line[i]))
+			return (1);
+		if (ccolor_i(&i, &a, data))
+			return (1);
 	}
 	if (a != 3)
 		return (-2);
 	return (1);
 }
 
-int	fcolor_getter(char *line, int i, t_data *data)
+int fcolor_getter(char *line, int i, t_data *data)
 {
-	int	a;
-	int	b;
+	int a;
 
 	a = 0;
-	b = 0;
 	if (color_exist(a, data->colors.fcolor) == -3)
 		return (-3);
 	data->map.line = line;
 	while (line[i])
 	{
-		if (ft_isalnum(line[i]))
-		{
-			if (fcolor_i(i, &a, b, data) == 1)
-				break ;
-		}
-		b = increment(&i, line);
+		while (line[i] && ft_isws(line[i]))
+			i++;
+		if (!line[i])
+			break;
+		if (!ft_isnum(line[i]))
+			return (1);
+		if (fcolor_i(&i, &a, data))
+			return (1);
 	}
 	if (a != 3)
 		return (-2);

@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 17:35:43 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/03 10:27:02 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,8 @@ int		not_v_l(char a);
 char	**save_map(char **file, int start, int end);
 int		check_map(int x, int y, char **map, t_data *data);
 int		color_exist(int a, float *color);
-int		ccolor_i(int i, int *a, int b, t_data *data);
-int		fcolor_i(int i, int *a, int b, t_data *data);
+int		ccolor_i(int *i, int *a, t_data *data);
+int		fcolor_i(int *i, int *a, t_data *data);
 int		increment(int *i, char *line);
 float	ft_get_float(int b, int i, char *l);
 // Player functions
@@ -162,5 +162,6 @@ void			strafe_right(t_player *player, t_data *data,
 
 void	put_image(int y, int x, void *a, t_data *data);
 int		c_f_color(float *colors);
+int		ft_isnum(int c);
 
 #endif

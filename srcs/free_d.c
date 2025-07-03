@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 12:04:19 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/20 14:09:38 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:09:05 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,8 @@ void	free_data(t_data *data)
 	{
 		data->img = ft_free(data->img);
 	}
+	data->texture.ea = ft_free(data->texture.ea);
+	data->texture.no = ft_free(data->texture.no);
+	data->texture.so = ft_free(data->texture.so);
+	data->texture.we = ft_free(data->texture.we);
 }

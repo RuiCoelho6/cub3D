@@ -6,7 +6,7 @@
 /*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:17:20 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/25 17:26:37 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/03 11:00:40 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	texture_color_finder(char **d_f, t_data *data)
 		if (error == 0)
 			return (printf("Error:Texture repeat\n"), 0);
 		else if (error == -2)
-			return (printf("Error:Invalid character on the file\n"));
+			return (printf("Error:Invalid character on the file\n"), 0);
 		else if (error == -3)
 			return (printf("Error:Color repeats\n"), 0);
 		j++;
