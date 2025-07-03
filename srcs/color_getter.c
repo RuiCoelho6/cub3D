@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_getter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 11:36:34 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/03 11:20:54 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/03 14:55:46 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ccolor_getter(char *line, int i, t_data *data)
 		if (!line[i])
 			break;
 		if (!ft_isnum(line[i]))
-			return (1);
+			return (-2);
 		if (ccolor_i(&i, &a, data))
 			return (1);
 	}
@@ -75,7 +75,7 @@ int fcolor_getter(char *line, int i, t_data *data)
 		if (!line[i])
 			break;
 		if (!ft_isnum(line[i]))
-			return (1);
+			return (-2);
 		if (fcolor_i(&i, &a, data))
 			return (1);
 	}
