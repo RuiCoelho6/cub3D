@@ -3,47 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:45:50 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/01 17:36:03 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/07 13:21:19 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-/*void init_texture(t_data *data)
-{
-	int i;
+#include "main.h"
 
-	i = 64;
-	data->texture.texture[0] = mlx_xpm_file_to_image(data->mlx_ptr, data->texture.ea, &i, &i);
-	data->texture.texture[1] = mlx_xpm_file_to_image(data->mlx_ptr, data->texture.no, &i, &i);
-	data->texture.texture[2] = mlx_xpm_file_to_image(data->mlx_ptr, data->texture.so, &i, &i);
-	data->texture.texture[3] = mlx_xpm_file_to_image(data->mlx_ptr, data->texture.we, &i, &i);
+int	load_single_texture(t_data *data, char *path, void **img, char **data_ptr)
+{
+	*img = mlx_xpm_file_to_image(data->mlx_ptr, path, 
+		&data->texture.width, &data->texture.height);
+	if (!*img)
+		return (0);
+	*data_ptr = mlx_get_data_addr(*img, &data->texture.bpp, 
+		&data->texture.line_len, &data->texture.endian);
+	if (!*data_ptr)
+		return (0);
+	return (1);
 }
-void	put_image(int y, int x, void *a, t_data *data)
+
+int	init_texture(t_data *data)
 {
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, a, x, y);
+	// Load North texture
+	if (!load_single_texture(data, data->texture.no, 
+		&data->texture.img_no, &data->texture.data_no))
+		return (printf("Error: Failed to load North texture\n"), 0);
+	
+	// Load South texture
+	if (!load_single_texture(data, data->texture.so, 
+		&data->texture.img_so, &data->texture.data_so))
+		return (printf("Error: Failed to load South texture\n"), 0);
+	
+	// Load West texture
+	if (!load_single_texture(data, data->texture.we, 
+		&data->texture.img_we, &data->texture.data_we))
+		return (printf("Error: Failed to load West texture\n"), 0);
+	
+	// Load East texture
+	if (!load_single_texture(data, data->texture.ea, 
+		&data->texture.img_ea, &data->texture.data_ea))
+		return (printf("Error: Failed to load East texture\n"), 0);
+	
+	printf("All textures loaded successfully!\n");
+	printf("Texture size: %dx%d\n", data->texture.width, data->texture.height);
+	return (1);
 }
 
-void	fill_map(t_data *data)
+void	free_textures(t_data *data)
 {
-	int		j;
-	int		i;
-	char	**map;
-
-	j = -1;
-	map = data->map.map;
-	while (map[++j])
-	{
-		i = -1;
-		while (map[j][++i])
-		{
-			if (map[j][i] == '0')
-				put_image(j * 32, i * 32, data->textures.texture[0], data);
-			if (map[j][i] == '1')
-				put_image(j * 32, i * 32, data->textures[1], data);
-		}
-	}
-}*/
+	if (data->texture.img_no)
+		mlx_destroy_image(data->mlx_ptr, data->texture.img_no);
+	if (data->texture.img_so)
+		mlx_destroy_image(data->mlx_ptr, data->texture.img_so);
+	if (data->texture.img_we)
+		mlx_destroy_image(data->mlx_ptr, data->texture.img_we);
+	if (data->texture.img_ea)
+		mlx_destroy_image(data->mlx_ptr, data->texture.img_ea);
+}

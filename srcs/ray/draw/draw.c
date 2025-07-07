@@ -3,35 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 17:30:31 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/07 13:30:10 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-void	set_colors(t_wall wall, t_data *data, int x)
+void	draw_textured_wall(t_data *data, int x, t_wall wall, t_ray_result ray_result)
 {
-	int	y;
+	int		y;
+	int		tex_x;
+	int		tex_y;
+	float	texture_step;
+	float	texture_pos;
+	int		color;
 
-	y = 0;
-	while (y < wall.start)
-	{
-		my_mlx_pixel_put(data->img, x, y, c_f_color(data->colors.ccolor)); // falta aplicar a cor pedida
-		y++;
-	}
+	// Calculate texture X coordinate
+	tex_x = calculate_texture_x(ray_result, data);
+	
+	// Calculate texture step and starting position
+	texture_step = (float)data->texture.height / wall.height;
+	texture_pos = (wall.start - (WIN_HEIGHT / 2) + wall.height / 2) * texture_step;
+	
+	// Draw the wall column
 	y = wall.start;
 	while (y < wall.end)
 	{
-		my_mlx_pixel_put(data->img, x, y, wall.color);
+		tex_y = (int)texture_pos;
+		texture_pos += texture_step;
+		
+		// Get pixel color from texture
+		color = get_texture_pixel(data, ray_result.wall_side, tex_x, tex_y);
+		
+		// Apply distance shading
+		color = apply_distance_shading(color, ray_result.distance);
+		
+		// Put pixel
+		my_mlx_pixel_put(data->img, x, y, color);
 		y++;
 	}
+}
+
+void	set_colors(t_wall wall, t_data *data, int x, t_ray_result ray_result)
+{
+	int	y;
+
+	// Draw ceiling
+	y = 0;
+	while (y < wall.start)
+	{
+		my_mlx_pixel_put(data->img, x, y, c_f_color(data->colors.ccolor));
+		y++;
+	}
+	
+	// Draw textured wall
+	draw_textured_wall(data, x, wall, ray_result);
+	
+	// Draw floor
 	y = wall.end;
 	while (y < WIN_HEIGHT)
 	{
-		my_mlx_pixel_put(data->img, x, y, c_f_color(data->colors.fcolor)); // falta aplicar a cor pedida
+		my_mlx_pixel_put(data->img, x, y, c_f_color(data->colors.fcolor));
 		y++;
 	}
 }
@@ -47,13 +82,13 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 	pitch_offset = data->player->pitch * 100;
 	wall.start = (WIN_HEIGHT - wall.height) / 2 + pitch_offset;
 	wall.end = wall.start + wall.height;
-	wall.color = get_wall_color(ray_result.wall_side);
-	wall.color = apply_distance_shading(wall.color, ray_result.distance);
+	
 	if (wall.start < 0)
 		wall.start = 0;
 	if (wall.end > WIN_HEIGHT)
 		wall.end = WIN_HEIGHT;
-	set_colors(wall, data, x);
+	
+	set_colors(wall, data, x, ray_result);
 }
 
 void	render_scene(t_player *player, t_data *data)

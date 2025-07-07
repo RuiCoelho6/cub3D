@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:15:57 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/25 15:53:09 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:31:57 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,28 @@ float	calculate_wall_height(float wall_distance, t_map map)
 t_ray_result	ray_caster(float ray_angle, t_player *player, t_data *data)
 {
 	t_ray_result	result;
-	float			horizontal_distance;
-	float			vertical_distance;
+	t_ray_hit		horizontal_hit;
+	t_ray_hit		vertical_hit;
 	int				hit_horizontal_wall;
 
-	horizontal_distance = cast_horizontal_ray(ray_angle, player, data);
-	vertical_distance = cast_vertical_ray(ray_angle, player, data);
-	if (vertical_distance < horizontal_distance)
+	horizontal_hit = cast_horizontal_ray_with_hit(ray_angle, player, data);
+	vertical_hit = cast_vertical_ray_with_hit(ray_angle, player, data);
+	
+	if (vertical_hit.distance < horizontal_hit.distance)
 	{
-		result.distance = vertical_distance;
+		result.distance = vertical_hit.distance;
+		result.hit_x = vertical_hit.hit_x;
+		result.hit_y = vertical_hit.hit_y;
 		hit_horizontal_wall = 0;
 	}
 	else
 	{
-		result.distance = horizontal_distance;
+		result.distance = horizontal_hit.distance;
+		result.hit_x = horizontal_hit.hit_x;
+		result.hit_y = horizontal_hit.hit_y;
 		hit_horizontal_wall = 1;
 	}
+	
 	result.wall_side = get_wall_side(ray_angle, hit_horizontal_wall);
 	result.wall_type = 1;
 	result.distance = fix_fisheye(result.distance, player->angle, ray_angle);

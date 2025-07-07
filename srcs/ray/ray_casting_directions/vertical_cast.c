@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_cast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 16:58:34 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/07 13:31:35 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,36 @@ int check_vertical_wall(float rx, float ry, t_data *data)
 	return (0);
 }
 
-float	cast_vertical_ray(float ray_angle, t_player *player, t_data *data)
+t_ray_hit	cast_vertical_ray_with_hit(float ray_angle, t_player *player, t_data *data)
 {
-	float	ray_x;
-	float	ray_y;
-	float	x_offset;
-	float	y_offset;
-	int		depth_of_field;
+	float		ray_x;
+	float		ray_y;
+	float		x_offset;
+	float		y_offset;
+	int			depth_of_field;
+	t_ray_hit	hit;
 
 	depth_of_field = 0;
 	init_vertical_ray(ray_angle, player, &ray_x, &ray_y);
 	get_vertical_step(ray_angle, &x_offset, &y_offset);
+	
 	if (ray_angle == PI / 2 || ray_angle == (3 * PI) / 2)
-		return (1000000.0f);
+	{
+		hit.distance = 1000000.0f;
+		hit.hit_x = ray_x;
+		hit.hit_y = ray_y;
+		return (hit);
+	}
+	
 	while (depth_of_field < 32)
 	{
 		if (check_vertical_wall(ray_x, ray_y, data))
-			return (dist(player->pos_x, player->pos_y, ray_x, ray_y));
+		{
+			hit.distance = dist(player->pos_x, player->pos_y, ray_x, ray_y);
+			hit.hit_x = ray_x;
+			hit.hit_y = ray_y;
+			return (hit);
+		}
 		ray_x += x_offset;
 		ray_y += y_offset;
 		depth_of_field++;
@@ -95,5 +108,8 @@ float	cast_vertical_ray(float ray_angle, t_player *player, t_data *data)
 			|| ray_y < -100 || ray_y > (data->map.max_y * MAP_SIZE + 100))
  			break ;
 	}
-	return (1000000.0f);
+	hit.distance = 1000000.0f;
+	hit.hit_x = ray_x;
+	hit.hit_y = ray_y;
+	return (hit);
 }
