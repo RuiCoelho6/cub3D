@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 13:33:49 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 14:55:58 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	main(int ac, char **av)
 		return (free_data(&data), 1);
 	
 	init_window(&data);
-	
 	// Initialize textures AFTER initializing MLX
 	if (!init_texture(&data))
 		return (free_data(&data), 1);
@@ -86,7 +85,6 @@ int	main(int ac, char **av)
 	find_player_start(&data);
 	init_player(&player, &data);
 	data.player = &player;
-	
 	render_scene(&player, &data);
 	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
 	mlx_key_hook(data.win_ptr, key_hook, &data);
