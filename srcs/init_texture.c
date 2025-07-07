@@ -6,13 +6,33 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:45:50 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/07 15:25:44 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:10:58 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
 #include "main.h"
+
+char	*ft_strndup(const char *s, size_t len)
+{
+	char	*dup;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	dup = malloc((len + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (s[i] && i < len)
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
 
 int	load_single_texture(t_data *data, char *path, void **img, char **data_ptr)
 {

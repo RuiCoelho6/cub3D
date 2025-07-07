@@ -1,13 +1,13 @@
 
-NO 								./textures/n_texture.xpm
+NO 								./textures/n_texture.xpm    
 
-SO ./textures/o_texture.xpm
+SO ./textures/o_texture.xpm   
 
-WE 															./textures/w_texture.xpm
+WE 															./textures/w_texture.xpm    
 
 
 
-EA					 ./textures/e_texture.xpm
+EA					 ./textures/e_texture.xpm     
 	
 
 

@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 15:55:38 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:11:22 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int				check_file(char	*map_file);
 int		parsing_and_init(char *file, t_data *data);
 int		check_file(char	*map_file);
 char	**open_map(char *filename);
+char	*ft_strndup(const char *s, size_t len);
 char	*get_next_line(int fd);
 int		get_resourchs(char **d_f, t_data *data);
 int		texture_color_finder(char **d_f, t_data *data);
