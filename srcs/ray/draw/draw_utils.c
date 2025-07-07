@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:04:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 16:41:27 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:39:26 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ int	apply_distance_shading(int base_color, float distance)
 	int		g;
 	int		b;
 
-	fade_factor = 2.0f - (distance / 500.0f);
+	fade_factor = 1.6f - (distance / 500.0f);
 	if (fade_factor < 0.3f)
 		fade_factor = 0.3f;
-	r = ((base_color >> 16) & 0xFF) * fade_factor;
-	g = ((base_color >> 8) & 0xFF) * fade_factor;
-	b = (base_color & 0xFF) * fade_factor;
+
+	r = fminf(((base_color >> 16) & 0xFF) * fade_factor, 255.0f);
+	g = fminf(((base_color >> 8) & 0xFF) * fade_factor, 255.0f);
+	b = fminf((base_color & 0xFF) * fade_factor, 255.0f);
+
 	return ((r << 16) | (g << 8) | b);
 }
 
