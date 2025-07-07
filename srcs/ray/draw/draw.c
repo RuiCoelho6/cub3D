@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 15:32:04 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:53:20 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,16 @@ void	draw_textured_wall(t_data *data, int x, t_wall wall, t_ray_result ray_resul
 	float	texture_pos;
 	int		color;
 
-	// Calculate texture X coordinate
 	tex_x = calculate_texture_x(ray_result, data);
-	
-	// Calculate texture step and starting position
 	texture_step = (float)data->texture.height / wall.height;
 	texture_pos = (wall.start - (WIN_HEIGHT / 2) + wall.height / 2) * texture_step;
-	
-	// Draw the wall column
 	y = wall.start;
 	while (y < wall.end)
 	{
 		tex_y = (int)texture_pos;
 		texture_pos += texture_step;
-		
-		// Get pixel color from texture
 		color = get_texture_pixel(data, ray_result.wall_side, tex_x, tex_y);
-		
-		// Apply distance shading
 		color = apply_distance_shading(color, ray_result.distance);
-		
-		// Put pixel
 		my_mlx_pixel_put(data->img, x, y, color);
 		y++;
 	}
