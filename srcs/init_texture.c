@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:45:50 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/07 13:21:19 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:25:44 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ int	init_texture(t_data *data)
 	if (!load_single_texture(data, data->texture.ea, 
 		&data->texture.img_ea, &data->texture.data_ea))
 		return (printf("Error: Failed to load East texture\n"), 0);
-	
-	printf("All textures loaded successfully!\n");
-	printf("Texture size: %dx%d\n", data->texture.width, data->texture.height);
 	return (1);
 }
 

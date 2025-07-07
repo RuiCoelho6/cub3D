@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 13:30:10 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:23:22 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,11 @@ void	set_colors(t_wall wall, t_data *data, int x, t_ray_result ray_result)
 void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 {
 	t_wall	wall;
-	int		pitch_offset;
 
 	if (x < 0 || x >= WIN_WIDTH)
 		return ;
 	wall.height = calculate_wall_height(ray_result.distance, data->map);
-	pitch_offset = data->player->pitch * 100;
-	wall.start = (WIN_HEIGHT - wall.height) / 2 + pitch_offset;
+	wall.start = (WIN_HEIGHT - wall.height) / 2;
 	wall.end = wall.start + wall.height;
 	
 	if (wall.start < 0)
