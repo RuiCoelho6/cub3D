@@ -1,23 +1,38 @@
 
-NO 								./textures/n_texture.xpm
+NO 								./textures/n_texture.xpm    
 
-SO ./textures/s_texture.xpm															
+SO ./textures/o_texture.xpm   
 
-WE 															./textures/w_texture.xpm
+WE 															./textures/w_texture.xpm    
 
 
 
-EA					 ./textures/e_texture.xpm
+EA					 ./textures/e_texture.xpm     
 	
 
 
 
-F 		300      ,    210  ,   240   a
-			C		13     ,    110  , 10 a
+F 		300      ,    210  ,   240
+			C		13     ,    110  , 10
 
  111
  101
 10001
-10N01
+10N01 11111111
+10001 10000001
+10001 10000001
+10001110000001
+10000000000001
+10001111111101
+10001000000001
+10001011111111
+10001000000001
+10001000000001
+10001111111111
+10001
+10001
+10001
+10001
+10001
 10001
 11111

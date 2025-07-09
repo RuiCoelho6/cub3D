@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color_getter_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:42:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/03 11:35:26 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:46 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	color_exist(int a, float *color)
 {

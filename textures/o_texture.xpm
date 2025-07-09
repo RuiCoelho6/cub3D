@@ -1,8 +1,8 @@
-/* n_texture.xpm */
-static char *s_wall_xpm[] = {
+/* o_texture.xpm */
+static char *o_wall_xpm[] = {
 "64 64 3 1",             /* width height num_colors chars_per_pixel */
-"  c #87CEEB",           /* cinza claro (cimento) */
-". c #0000FF",           /* cinza médio (tijolo) */
+"  c #00CC00",           /* cinza claro (cimento) */
+". c #87CEEB",           /* cinza médio (tijolo) */
 "# c #666666",           /* cinza escuro (sombra/tijolo) */
 "................................................................",
 "................................................................",

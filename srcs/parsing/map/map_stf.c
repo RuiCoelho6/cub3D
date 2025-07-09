@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_stf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 18:10:21 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/27 09:52:15 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:27 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 char	**save_map(char **file, int start, int end)
 {

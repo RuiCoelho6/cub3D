@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   float_color_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 17:30:34 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/03 08:45:48 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:39 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	c_f_color(float *colors)
 {

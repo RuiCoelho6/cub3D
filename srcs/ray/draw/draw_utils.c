@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:04:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/01 16:41:27 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:48:51 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,26 @@
 
 int	apply_distance_shading(int base_color, float distance)
 {
-	float	fade_factor;
+	float	fade;
 	int		r;
 	int		g;
 	int		b;
 
-	fade_factor = 2.0f - (distance / 500.0f);
-	if (fade_factor < 0.3f)
-		fade_factor = 0.3f;
-	r = ((base_color >> 16) & 0xFF) * fade_factor;
-	g = ((base_color >> 8) & 0xFF) * fade_factor;
-	b = (base_color & 0xFF) * fade_factor;
+	fade = 1.6f - (distance / 500.0f);
+	if (fade < 0.0f)
+		fade = 0.0f;
+	r = (int)(((base_color >> 16) & 0xFF) * fade);
+	g = (int)(((base_color >> 8) & 0xFF) * fade);
+	b = (int)((base_color & 0xFF) * fade);
+	if (r > 255)
+		r = 255;
+	if (g > 255)
+		g = 255;
+	if (b > 255)
+		b = 255;
 	return ((r << 16) | (g << 8) | b);
 }
+
 
 int	get_wall_side(float ray_angle, int hit_horizontal)
 {

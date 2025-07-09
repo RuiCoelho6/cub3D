@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_color_finder.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 15:17:20 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/03 11:00:40 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:13 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	ft_isws(int c)
 {

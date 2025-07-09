@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 11:36:34 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/03 14:55:46 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:43 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 float	ft_atof(char *number)
 {

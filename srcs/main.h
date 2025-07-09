@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/03 10:27:02 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:56:34 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,29 @@ typedef struct s_colors
 
 typedef struct s_texture
 {
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char *texture[3];
+	char	*no;        // North texture path
+	char	*so;        // South texture path
+	char	*we;        // West texture path
+	char	*ea;        // East texture path
+	
+	// Texture image data
+	void	*img_no;    // North texture image
+	void	*img_so;    // South texture image
+	void	*img_we;    // West texture image
+	void	*img_ea;    // East texture image
+	
+	// Texture pixel data
+	char	*data_no;   // North texture pixel data
+	char	*data_so;   // South texture pixel data
+	char	*data_we;   // West texture pixel data
+	char	*data_ea;   // East texture pixel data
+	
+	// Texture dimensions
+	int		width;      // Texture width (assuming all textures are same size)
+	int		height;     // Texture height
+	int		bpp;        // Bits per pixel
+	int		line_len;   // Line length
+	int		endian;     // Endian
 }	t_texture;
 
 typedef struct s_map
@@ -102,13 +120,15 @@ float			calculate_wall_height(float distance, t_map map);
 void			init_horizontal_ray(float ra, t_player *player,
 					float *rx, float *ry);
 int				check_horizontal_wall(float rx, float ry, t_data *data);
-float			cast_horizontal_ray(float ra, t_player *player, t_data *data);
+t_ray_hit		cast_horizontal_ray_with_hit(float ray_angle,
+					t_player *player, t_data *data);
 
 // Casting horizontal rays
 void			init_vertical_ray(float ra, t_player *player,
 					float *rx, float *ry);
 int				check_vertical_wall(float rx, float ry, t_data *data);
-float			cast_vertical_ray(float ra, t_player *player, t_data *data);
+t_ray_hit		cast_vertical_ray_with_hit(float ray_angle,
+					t_player *player, t_data *data);
 
 // Drawing functions
 void			draw_ray_column(t_data *data, int x, t_ray_result ray_result);
@@ -120,9 +140,9 @@ int				check_file(char	*map_file);
 
 //parsing and init
 int		parsing_and_init(char *file, t_data *data);
-void	init_texture(t_data *data);
 int		check_file(char	*map_file);
 char	**open_map(char *filename);
+char	*ft_strndup(const char *s, size_t len);
 char	*get_next_line(int fd);
 int		get_resourchs(char **d_f, t_data *data);
 int		texture_color_finder(char **d_f, t_data *data);
@@ -147,6 +167,7 @@ int		ccolor_i(int *i, int *a, t_data *data);
 int		fcolor_i(int *i, int *a, t_data *data);
 int		increment(int *i, char *line);
 float	ft_get_float(int b, int i, char *l);
+void	*ft_free(void *ptr);
 // Player functions
 void			init_player(t_player *player, t_data *data);
 int				key_hook(int keycode, t_data *data);
@@ -164,4 +185,9 @@ void	put_image(int y, int x, void *a, t_data *data);
 int		c_f_color(float *colors);
 int		ft_isnum(int c);
 
+// Texture functions
+int		init_texture(t_data *data);
+void	free_textures(t_data *data);
+int		get_texture_pixel(t_data *data, int wall_side, int tex_x, int tex_y);
+int		calculate_texture_x(t_ray_result ray_result, t_data *data);
 #endif
