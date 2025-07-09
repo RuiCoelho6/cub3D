@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:24:20 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 17:29:10 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:31:50 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../main.h"
+#include "../../../main.h"
 
 t_ray_params	setup_vertical_ray(float ray_angle, t_player *player)
 {

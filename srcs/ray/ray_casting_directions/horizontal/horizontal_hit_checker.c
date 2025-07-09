@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:55:06 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 17:01:15 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:31:42 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../main.h"
+#include "../../../main.h"
 
 t_ray_hit	create_ray_hit(float distance, float hit_x, float hit_y)
 {
