@@ -6,32 +6,40 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 15:14:56 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:50:32 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-void	draw_textured_wall(t_data *data, int x, t_wall wall,
-		t_ray_result ray_result)
+t_texture_params	calculate_texture_params(t_data *data,
+		t_wall wall, t_ray_result ray_result)
 {
-	int		y;
-	int		tex_x;
-	int		tex_y;
-	float	texture_step;
-	float	texture_pos;
-	int		color;
+	t_texture_params	params;
 
-	tex_x = calculate_texture_x(ray_result, data);
-	texture_step = (float)data->texture.height / wall.height;
-	texture_pos = (wall.start - (WIN_HEIGHT / 2)
-			+ wall.height / 2) * texture_step;
+	params.tex_x = calculate_texture_x(ray_result, data);
+	params.texture_step = (float)data->texture.height / wall.height;
+	params.texture_pos = (wall.start - (WIN_HEIGHT / 2)
+			+ wall.height / 2) * params.texture_step;
+	return (params);
+}
+
+void	draw_textured_wall(t_data *data, int x,
+		t_wall wall, t_ray_result ray_result)
+{
+	t_texture_params	params;
+	int					tex_y;
+	int					y;
+	int					color;
+
+	params = calculate_texture_params(data, wall, ray_result);
 	y = wall.start;
 	while (y < wall.end)
 	{
-		tex_y = (int)texture_pos;
-		texture_pos += texture_step;
-		color = get_texture_pixel(data, ray_result.wall_side, tex_x, tex_y);
+		tex_y = (int)params.texture_pos;
+		params.texture_pos += params.texture_step;
+		color = get_texture_pixel(data, ray_result.wall_side,
+				params.tex_x, tex_y);
 		color = apply_distance_shading(color, ray_result.distance);
 		my_mlx_pixel_put(data->img, x, y, color);
 		y++;

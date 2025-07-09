@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 15:09:07 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:26:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_texture
 	char	*data_so;// South texture pixel data
 	char	*data_we;// West texture pixel data
 	char	*data_ea;// East texture pixel data
-	int		width;// Texture width (assuming all textures are same size)
+	int		width;// Texture width
 	int		height;// Texture height
 	int		bpp;// Bits per pixel
 	int		line_len;// Line length
@@ -107,6 +107,7 @@ void			my_mlx_pixel_put(t_img_data *img, int x, int y, int color);
 // Raycasting functions
 t_ray_result	ray_caster(float ra, t_player *player, t_data *data);
 float			calculate_wall_height(float distance, t_map map);
+int				is_ray_out_of_bounds(float ray_x, float ray_y, t_data *data);
 
 // Casting horizontal rays
 void			init_horizontal_ray(float ra, t_player *player,

@@ -25,8 +25,10 @@ SRCS =  ./srcs/parsing/map/map_stf2.c ./srcs/parsing/color/color_getter_utils.c 
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
 	./srcs/main.c \
 	./srcs/window_controls.c\
-	./srcs/ray/ray_casting_directions/horizontal_cast.c\
-	./srcs/ray/ray_casting_directions/vertical_cast.c\
+	./srcs/ray/ray_casting_directions/horizontal/horizontal_cast.c\
+	./srcs/ray/ray_casting_directions/horizontal/horizontal_hit_checker.c\
+	./srcs/ray/ray_casting_directions/vertical/vertical_cast.c\
+	./srcs/ray/ray_casting_directions/vertical/vertical_hit_checker.c\
 	./srcs/ray/ray_caster.c\
 	./srcs/ray/draw/draw_utils.c\
 	./srcs/ray/draw/draw.c\
