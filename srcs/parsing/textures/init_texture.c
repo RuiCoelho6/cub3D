@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:45:50 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:15:20 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:05:23 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ char	*ft_strndup(const char *s, size_t len)
 
 int	load_single_texture(t_data *data, char *path, void **img, char **data_ptr)
 {
-	*img = mlx_xpm_file_to_image(data->mlx_ptr, path, 
-		&data->texture.width, &data->texture.height);
+	*img = mlx_xpm_file_to_image(data->mlx_ptr, path,
+			&data->texture.width, &data->texture.height);
 	if (!*img)
 		return (0);
-	*data_ptr = mlx_get_data_addr(*img, &data->texture.bpp, 
-		&data->texture.line_len, &data->texture.endian);
+	*data_ptr = mlx_get_data_addr(*img, &data->texture.bpp,
+			&data->texture.line_len, &data->texture.endian);
 	if (!*data_ptr)
 		return (0);
 	return (1);
@@ -47,24 +47,17 @@ int	load_single_texture(t_data *data, char *path, void **img, char **data_ptr)
 
 int	init_texture(t_data *data)
 {
-	// Load North texture
-	if (!load_single_texture(data, data->texture.no, 
-		&data->texture.img_no, &data->texture.data_no))
+	if (!load_single_texture(data, data->texture.no,
+			&data->texture.img_no, &data->texture.data_no))
 		return (printf("Error: Failed to load North texture\n"), 0);
-	
-	// Load South texture
-	if (!load_single_texture(data, data->texture.so, 
-		&data->texture.img_so, &data->texture.data_so))
+	if (!load_single_texture(data, data->texture.so,
+			&data->texture.img_so, &data->texture.data_so))
 		return (printf("Error: Failed to load South texture\n"), 0);
-	
-	// Load West texture
-	if (!load_single_texture(data, data->texture.we, 
-		&data->texture.img_we, &data->texture.data_we))
+	if (!load_single_texture(data, data->texture.we,
+			&data->texture.img_we, &data->texture.data_we))
 		return (printf("Error: Failed to load West texture\n"), 0);
-	
-	// Load East texture
-	if (!load_single_texture(data, data->texture.ea, 
-		&data->texture.img_ea, &data->texture.data_ea))
+	if (!load_single_texture(data, data->texture.ea,
+			&data->texture.img_ea, &data->texture.data_ea))
 		return (printf("Error: Failed to load East texture\n"), 0);
 	return (1);
 }

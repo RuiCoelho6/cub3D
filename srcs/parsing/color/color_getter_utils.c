@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 08:42:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:15:46 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:02:27 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	increment(int *i, char *line)
 	return (0);
 }
 
-int fcolor_i(int *i, int *a, t_data *data)
+int	fcolor_i(int *i, int *a, t_data *data)
 {
-	int b;
-	
+	int	b;
+
 	b = 0;
 	while (data->map.line[*i] && ft_isws(data->map.line[*i]))
 		(*i)++;
@@ -48,7 +48,6 @@ int fcolor_i(int *i, int *a, t_data *data)
 	(*a)++;
 	while (data->map.line[*i] && ft_isws(data->map.line[*i]))
 		(*i)++;
-
 	if (*a < 3)
 	{
 		if (data->map.line[*i] != ',')
@@ -60,8 +59,8 @@ int fcolor_i(int *i, int *a, t_data *data)
 
 int	ccolor_i(int *i, int *a, t_data *data)
 {
-	int b;
-	
+	int	b;
+
 	b = 0;
 	while (data->map.line[*i] && ft_isws(data->map.line[*i]))
 		(*i)++;

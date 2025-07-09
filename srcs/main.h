@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 10:56:34 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:09:07 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,27 @@ typedef struct s_colors
 
 typedef struct s_texture
 {
-	char	*no;        // North texture path
-	char	*so;        // South texture path
-	char	*we;        // West texture path
-	char	*ea;        // East texture path
-	
-	// Texture image data
-	void	*img_no;    // North texture image
-	void	*img_so;    // South texture image
-	void	*img_we;    // West texture image
-	void	*img_ea;    // East texture image
-	
-	// Texture pixel data
-	char	*data_no;   // North texture pixel data
-	char	*data_so;   // South texture pixel data
-	char	*data_we;   // West texture pixel data
-	char	*data_ea;   // East texture pixel data
-	
-	// Texture dimensions
-	int		width;      // Texture width (assuming all textures are same size)
-	int		height;     // Texture height
-	int		bpp;        // Bits per pixel
-	int		line_len;   // Line length
-	int		endian;     // Endian
+	char	*no;// North texture path
+	char	*so;// South texture path
+	char	*we;// West texture path
+	char	*ea;// East texture path
+	void	*img_no;// North texture image
+	void	*img_so;// South texture image
+	void	*img_we;// West texture image
+	void	*img_ea;// East texture image
+	char	*data_no;// North texture pixel data
+	char	*data_so;// South texture pixel data
+	char	*data_we;// West texture pixel data
+	char	*data_ea;// East texture pixel data
+	int		width;// Texture width (assuming all textures are same size)
+	int		height;// Texture height
+	int		bpp;// Bits per pixel
+	int		line_len;// Line length
+	int		endian;// Endian
 }	t_texture;
 
 typedef struct s_map
 {
-
 	char	**map;
 	char	player_direction;
 	int		start_map;
@@ -81,7 +74,6 @@ typedef struct s_map
 	int		max_y;
 	int		size;
 	char	*line;
-
 }	t_map;
 
 typedef struct s_img_data
@@ -139,35 +131,35 @@ int				parsing(char **av);
 int				check_file(char	*map_file);
 
 //parsing and init
-int		parsing_and_init(char *file, t_data *data);
-int		check_file(char	*map_file);
-char	**open_map(char *filename);
-char	*ft_strndup(const char *s, size_t len);
-char	*get_next_line(int fd);
-int		get_resourchs(char **d_f, t_data *data);
-int		texture_color_finder(char **d_f, t_data *data);
-int		ft_isws(int c);
-int		ea_getter(char *line, int i, t_data *data);
-int		no_getter(char *line, int i, t_data *data);
-int		so_getter(char *line, int i, t_data *data);
-int		we_getter(char *line, int i, t_data *data);
-int		save_color(char *line, int i, t_data *data, int info);
-int		is_empty_line(char *line);
-int		map_valid(t_data *data);
-char	**save_map(char **file, int start, int end);
-void	free_data(t_data *data);
-void	ft_free_dc(char ***a);
-int		is_player(char letter);
-int		v_p(char **map, int y, int x);
-int		not_v_l(char a);
-char	**save_map(char **file, int start, int end);
-int		check_map(int x, int y, char **map, t_data *data);
-int		color_exist(int a, float *color);
-int		ccolor_i(int *i, int *a, t_data *data);
-int		fcolor_i(int *i, int *a, t_data *data);
-int		increment(int *i, char *line);
-float	ft_get_float(int b, int i, char *l);
-void	*ft_free(void *ptr);
+int				parsing_and_init(char *file, t_data *data);
+int				check_file(char	*map_file);
+char			**open_map(char *filename);
+char			*ft_strndup(const char *s, size_t len);
+char			*get_next_line(int fd);
+int				get_resourchs(char **d_f, t_data *data);
+int				texture_color_finder(char **d_f, t_data *data);
+int				ft_isws(int c);
+int				ea_getter(char *line, int i, t_data *data);
+int				no_getter(char *line, int i, t_data *data);
+int				so_getter(char *line, int i, t_data *data);
+int				we_getter(char *line, int i, t_data *data);
+int				save_color(char *line, int i, t_data *data, int info);
+int				is_empty_line(char *line);
+int				map_valid(t_data *data);
+char			**save_map(char **file, int start, int end);
+void			free_data(t_data *data);
+void			ft_free_dc(char ***a);
+int				is_player(char letter);
+int				v_p(char **map, int y, int x);
+int				not_v_l(char a);
+char			**save_map(char **file, int start, int end);
+int				check_map(int x, int y, char **map, t_data *data);
+int				color_exist(int a, float *color);
+int				ccolor_i(int *i, int *a, t_data *data);
+int				fcolor_i(int *i, int *a, t_data *data);
+int				increment(int *i, char *line);
+float			ft_get_float(int b, int i, char *l);
+void			*ft_free(void *ptr);
 // Player functions
 void			init_player(t_player *player, t_data *data);
 int				key_hook(int keycode, t_data *data);
@@ -175,19 +167,15 @@ void			move_forward(t_player *player, t_data *data,
 					int tile_x, int tile_y);
 void			move_backward(t_player *player, t_data *data,
 					int tile_x, int tile_y);
-void			strafe_left(t_player *player, t_data *data,
-					int tile_x, int tile_y);
-void			strafe_right(t_player *player, t_data *data,
-					int tile_x, int tile_y);
 
-
-void	put_image(int y, int x, void *a, t_data *data);
-int		c_f_color(float *colors);
-int		ft_isnum(int c);
+void			put_image(int y, int x, void *a, t_data *data);
+int				c_f_color(float *colors);
+int				ft_isnum(int c);
 
 // Texture functions
-int		init_texture(t_data *data);
-void	free_textures(t_data *data);
-int		get_texture_pixel(t_data *data, int wall_side, int tex_x, int tex_y);
-int		calculate_texture_x(t_ray_result ray_result, t_data *data);
+int				init_texture(t_data *data);
+void			free_textures(t_data *data);
+int				get_texture_pixel(t_data *data, int wall_side,
+					int tex_x, int tex_y);
+int				calculate_texture_x(t_ray_result ray_result, t_data *data);
 #endif

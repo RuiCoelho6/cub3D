@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 14:15:57 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 13:31:57 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:10:01 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 float	dist(float start_x, float start_y, float end_x, float end_y)
 {
-	return (sqrt((end_x - start_x) * (end_x - start_x) + (end_y - start_y) * (end_y - start_y)));
+	return (sqrt((end_x - start_x) * (end_x - start_x)
+			+ (end_y - start_y) * (end_y - start_y)));
 }
 
 float	normalize_angle(float angle)
@@ -54,7 +55,6 @@ t_ray_result	ray_caster(float ray_angle, t_player *player, t_data *data)
 
 	horizontal_hit = cast_horizontal_ray_with_hit(ray_angle, player, data);
 	vertical_hit = cast_vertical_ray_with_hit(ray_angle, player, data);
-	
 	if (vertical_hit.distance < horizontal_hit.distance)
 	{
 		result.distance = vertical_hit.distance;
@@ -69,7 +69,6 @@ t_ray_result	ray_caster(float ray_angle, t_player *player, t_data *data)
 		result.hit_y = horizontal_hit.hit_y;
 		hit_horizontal_wall = 1;
 	}
-	
 	result.wall_side = get_wall_side(ray_angle, hit_horizontal_wall);
 	result.wall_type = 1;
 	result.distance = fix_fisheye(result.distance, player->angle, ray_angle);

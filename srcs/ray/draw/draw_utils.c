@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:04:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 15:48:51 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:15:57 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	apply_distance_shading(int base_color, float distance)
 		b = 255;
 	return ((r << 16) | (g << 8) | b);
 }
-
 
 int	get_wall_side(float ray_angle, int hit_horizontal)
 {

@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 11:36:34 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:15:43 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:00:26 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ float	ft_get_float(int b, int i, char *l)
 
 int	ccolor_getter(char *line, int i, t_data *data)
 {
-	int a;
+	int	a;
 
 	a = 0;
 	if (color_exist(a, data->colors.ccolor) == -3)
@@ -49,7 +49,7 @@ int	ccolor_getter(char *line, int i, t_data *data)
 		while (line[i] && ft_isws(line[i]))
 			i++;
 		if (!line[i])
-			break;
+			break ;
 		if (!ft_isnum(line[i]))
 			return (-2);
 		if (ccolor_i(&i, &a, data))
@@ -60,9 +60,9 @@ int	ccolor_getter(char *line, int i, t_data *data)
 	return (1);
 }
 
-int fcolor_getter(char *line, int i, t_data *data)
+int	fcolor_getter(char *line, int i, t_data *data)
 {
-	int a;
+	int	a;
 
 	a = 0;
 	if (color_exist(a, data->colors.fcolor) == -3)
@@ -73,7 +73,7 @@ int fcolor_getter(char *line, int i, t_data *data)
 		while (line[i] && ft_isws(line[i]))
 			i++;
 		if (!line[i])
-			break;
+			break ;
 		if (!ft_isnum(line[i]))
 			return (-2);
 		if (fcolor_i(&i, &a, data))

@@ -6,13 +6,14 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 11:24:08 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:57:24 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-void	init_horizontal_ray(float ray_angle, t_player *player, float *ray_x, float *ray_y)
+void	init_horizontal_ray(float ray_angle, t_player *player,
+			float *ray_x, float *ray_y)
 {
 	float	inverse_tan;
 
@@ -55,7 +56,8 @@ void	get_horizontal_step(float ray_angle, float *x_offset, float *y_offset)
 		*y_offset = 0;
 	}
 }
-int check_horizontal_wall(float rx, float ry, t_data *data)
+
+int	check_horizontal_wall(float rx, float ry, t_data *data)
 {
 	int	map_x;
 	int	map_y;
@@ -65,13 +67,14 @@ int check_horizontal_wall(float rx, float ry, t_data *data)
 	if (map_x < 0 || map_y < 0
 		|| map_y >= data->map.max_y
 		|| map_x >= (int)ft_strlen(data->map.map[map_y]))
-	return (1);
+		return (1);
 	if (data->map.map[map_y][map_x] == '1')
 		return (1);
 	return (0);
 }
 
-t_ray_hit	cast_horizontal_ray_with_hit(float ray_angle, t_player *player, t_data *data)
+t_ray_hit	cast_horizontal_ray_with_hit(float ray_angle,
+				t_player *player, t_data *data)
 {
 	float		ray_x;
 	float		ray_y;
@@ -83,7 +86,6 @@ t_ray_hit	cast_horizontal_ray_with_hit(float ray_angle, t_player *player, t_data
 	depth_of_field = 0;
 	init_horizontal_ray(ray_angle, player, &ray_x, &ray_y);
 	get_horizontal_step(ray_angle, &x_offset, &y_offset);
-	
 	if (ray_angle == 0 || ray_angle == PI)
 	{
 		hit.distance = 1000000.0f;
@@ -91,7 +93,6 @@ t_ray_hit	cast_horizontal_ray_with_hit(float ray_angle, t_player *player, t_data
 		hit.hit_y = ray_y;
 		return (hit);
 	}
-	
 	while (depth_of_field < 32)
 	{
 		if (check_horizontal_wall(ray_x, ray_y, data))

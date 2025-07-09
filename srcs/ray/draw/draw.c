@@ -6,13 +6,14 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:02:48 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 15:53:20 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:14:56 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-void	draw_textured_wall(t_data *data, int x, t_wall wall, t_ray_result ray_result)
+void	draw_textured_wall(t_data *data, int x, t_wall wall,
+		t_ray_result ray_result)
 {
 	int		y;
 	int		tex_x;
@@ -23,7 +24,8 @@ void	draw_textured_wall(t_data *data, int x, t_wall wall, t_ray_result ray_resul
 
 	tex_x = calculate_texture_x(ray_result, data);
 	texture_step = (float)data->texture.height / wall.height;
-	texture_pos = (wall.start - (WIN_HEIGHT / 2) + wall.height / 2) * texture_step;
+	texture_pos = (wall.start - (WIN_HEIGHT / 2)
+			+ wall.height / 2) * texture_step;
 	y = wall.start;
 	while (y < wall.end)
 	{
@@ -40,18 +42,13 @@ void	set_colors(t_wall wall, t_data *data, int x, t_ray_result ray_result)
 {
 	int	y;
 
-	// Draw ceiling
 	y = 0;
 	while (y < wall.start)
 	{
 		my_mlx_pixel_put(data->img, x, y, c_f_color(data->colors.ccolor));
 		y++;
 	}
-	
-	// Draw textured wall
 	draw_textured_wall(data, x, wall, ray_result);
-	
-	// Draw floor
 	y = wall.end;
 	while (y < WIN_HEIGHT)
 	{
@@ -69,12 +66,10 @@ void	draw_ray_column(t_data *data, int x, t_ray_result ray_result)
 	wall.height = calculate_wall_height(ray_result.distance, data->map);
 	wall.start = (WIN_HEIGHT - wall.height) / 2;
 	wall.end = wall.start + wall.height;
-	
 	if (wall.start < 0)
 		wall.start = 0;
 	if (wall.end > WIN_HEIGHT)
 		wall.end = WIN_HEIGHT;
-	
 	set_colors(wall, data, x, ray_result);
 }
 

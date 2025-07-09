@@ -6,13 +6,14 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 11:27:36 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:59:21 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../main.h"
 
-void	init_vertical_ray(float ray_angle, t_player *player, float *ray_x, float *ray_y)
+void	init_vertical_ray(float ray_angle, t_player *player,
+			float *ray_x, float *ray_y)
 {
 	float	negative_tangent;
 
@@ -56,7 +57,7 @@ void	get_vertical_step(float ray_angle, float *x_offset, float *y_offset)
 	}
 }
 
-int check_vertical_wall(float rx, float ry, t_data *data)
+int	check_vertical_wall(float rx, float ry, t_data *data)
 {
 	int	map_x;
 	int	map_y;
@@ -72,7 +73,8 @@ int check_vertical_wall(float rx, float ry, t_data *data)
 	return (0);
 }
 
-t_ray_hit	cast_vertical_ray_with_hit(float ray_angle, t_player *player, t_data *data)
+t_ray_hit	cast_vertical_ray_with_hit(float ray_angle,
+				t_player *player, t_data *data)
 {
 	float		ray_x;
 	float		ray_y;
@@ -84,7 +86,6 @@ t_ray_hit	cast_vertical_ray_with_hit(float ray_angle, t_player *player, t_data *
 	depth_of_field = 0;
 	init_vertical_ray(ray_angle, player, &ray_x, &ray_y);
 	get_vertical_step(ray_angle, &x_offset, &y_offset);
-	
 	if (ray_angle == PI / 2 || ray_angle == (3 * PI) / 2)
 	{
 		hit.distance = 1000000.0f;
@@ -92,7 +93,6 @@ t_ray_hit	cast_vertical_ray_with_hit(float ray_angle, t_player *player, t_data *
 		hit.hit_y = ray_y;
 		return (hit);
 	}
-	
 	while (depth_of_field < 32)
 	{
 		if (check_vertical_wall(ray_x, ray_y, data))
@@ -107,7 +107,7 @@ t_ray_hit	cast_vertical_ray_with_hit(float ray_angle, t_player *player, t_data *
 		depth_of_field++;
 		if (ray_x < -100 || ray_x > (data->map.max_x * MAP_SIZE + 100)
 			|| ray_y < -100 || ray_y > (data->map.max_y * MAP_SIZE + 100))
- 			break ;
+			break ;
 	}
 	hit.distance = 1000000.0f;
 	hit.hit_x = ray_x;
