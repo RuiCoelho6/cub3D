@@ -17,9 +17,10 @@ VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-o
 RM = rm -f
 
 
-SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c ./srcs/init_texture.c ./srcs/texture_sampling.c \
-	./srcs/free_d.c ./srcs/map_stf.c ./srcs/color_getter.c ./srcs/texture_getter.c \
-	./srcs/texture_color_finder.c ./srcs/parsing.c ./srcs/file_utils.c ./srcs/file_resourchs_getter.c \
+SRCS =  ./srcs/parsing/map/map_stf2.c ./srcs/parsing/color/color_getter_utils.c ./srcs/parsing/textures/init_texture.c ./srcs/parsing/textures/texture_sampling.c \
+	./srcs/free_d.c ./srcs/parsing/map/map_stf.c ./srcs/parsing/color/color_getter.c ./srcs/parsing/textures/texture_getter.c \
+	./srcs/parsing/textures/texture_color_finder.c ./srcs/parsing/parsing.c ./srcs/parsing/file/file_utils.c \
+	./srcs/parsing/file/file_resourchs_getter.c \
 	./libs/Get_Next_Line/get_next_line_bonus.c \
 	./libs/Get_Next_Line/get_next_line_utils_bonus.c \
 	./srcs/main.c \
@@ -31,7 +32,7 @@ SRCS =  ./srcs/map_stf2.c ./srcs/color_getter_utils.c ./srcs/init_texture.c ./sr
 	./srcs/ray/draw/draw.c\
 	./srcs/player/player.c\
 	./srcs/player/movement_controls.c\
-	./srcs/float_color_init.c \
+	./srcs/parsing/color/float_color_init.c \
 
 OBJDIR = Objs
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
@@ -56,7 +57,7 @@ s: fclean mlx all
 	./$(NAME) maps/strange_valid_map.cub
 
 v: clean mlx $(NAME)
-	@$(VAL) ./$(NAME)
+	@$(VAL) ./$(NAME) maps/strange_valid_map.cub
 
 libft:
 	@$(MAKE) -C $(LIB_DIR) > /dev/null

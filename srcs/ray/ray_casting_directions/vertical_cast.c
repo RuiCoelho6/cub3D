@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 13:31:35 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:27:36 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,9 @@ int check_vertical_wall(float rx, float ry, t_data *data)
 
 	map_x = (int)(rx) >> 6;
 	map_y = (int)(ry) >> 6;
-	if (map_x < 0 || map_x >= data->map.max_x || 
-		map_y < 0 || map_y >= data->map.max_y)
+	if (map_x < 0 || map_y < 0
+		|| map_x >= data->map.max_x
+		|| map_y >= data->map.max_y)
 		return (1);
 	if (data->map.map[map_y][map_x] == '1')
 		return (1);

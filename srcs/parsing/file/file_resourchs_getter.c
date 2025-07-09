@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:12:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/07 15:08:31 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:35 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 void	set_color_neg(t_data *data)
 {

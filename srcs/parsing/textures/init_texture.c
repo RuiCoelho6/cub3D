@@ -6,13 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 16:45:50 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/07 16:10:58 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:20 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
-
-#include "main.h"
+#include "../../main.h"
 
 char	*ft_strndup(const char *s, size_t len)
 {

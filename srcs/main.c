@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 14:55:58 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:06:05 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,5 @@ int	main(int ac, char **av)
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &murder_window_key, &data);
 	mlx_hook(data.win_ptr, ClientMessage, NoEventMask, &murder_window, &data);
 	mlx_loop(data.mlx_ptr);
-	
-	free_textures(&data);  // Free textures before freeing data
-	free_data(&data);
 	return (0);
 }

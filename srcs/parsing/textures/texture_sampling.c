@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:25:13 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 13:25:25 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:03 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	get_texture_pixel(t_data *data, int wall_side, int tex_x, int tex_y)
 {

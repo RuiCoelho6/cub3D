@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:59:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/06/26 11:07:33 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:06:25 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ int	handle_no_event(void)
 
 int	murder_window(t_data *data)
 {
+	free_textures(data);
 	mlx_destroy_image(data->mlx_ptr, data->img->ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
-	free(data->img);
+	free_data(data);
 	exit(1);
 	return (0);
 }

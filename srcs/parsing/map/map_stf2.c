@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_stf2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:45:43 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/27 09:52:35 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:15:24 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	check_map(int x, int y, char **map, t_data *data)
 {

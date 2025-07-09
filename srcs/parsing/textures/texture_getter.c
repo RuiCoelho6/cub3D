@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:45:20 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/07 16:15:45 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:59:07 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../../main.h"
 
 int	ea_getter(char *line, int i, t_data *data)
 {

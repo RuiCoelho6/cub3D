@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 16:11:22 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:56:34 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ int		ccolor_i(int *i, int *a, t_data *data);
 int		fcolor_i(int *i, int *a, t_data *data);
 int		increment(int *i, char *line);
 float	ft_get_float(int b, int i, char *l);
+void	*ft_free(void *ptr);
 // Player functions
 void			init_player(t_player *player, t_data *data);
 int				key_hook(int keycode, t_data *data);

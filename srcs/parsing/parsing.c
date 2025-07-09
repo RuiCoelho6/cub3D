@@ -6,11 +6,11 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:38:02 by ppassos           #+#    #+#             */
-/*   Updated: 2025/06/20 14:22:55 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/07/09 10:14:59 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "../main.h"
 
 int	check_file(char	*map_file)
 {
