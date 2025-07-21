@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 10:59:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 11:06:25 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:56:14 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,5 @@ int	murder_window(t_data *data)
 	free(data->mlx_ptr);
 	free_data(data);
 	exit(1);
-	return (0);
-}
-
-int	murder_window_key(int keysym, t_data *mlx)
-{
-	if (keysym == XK_Escape)
-		murder_window(mlx);
 	return (0);
 }

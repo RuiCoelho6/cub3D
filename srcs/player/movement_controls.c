@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:39:49 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 14:41:24 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:55:56 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	key_press(int keycode, t_data *data)
 {
-	if (keycode == 65307)
-		exit(0);
+	if (keycode == XK_Escape)
+		murder_window(data);
 	if (keycode == 119 || keycode == 65362)
 		data->player->key_up = 1;
 	if (keycode == 97 || keycode == 65361)
