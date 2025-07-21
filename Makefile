@@ -16,7 +16,6 @@ FLAGS = -Wall -Wextra -Werror
 VAL = valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes
 RM = rm -f
 
-
 SRCS =  ./srcs/parsing/map/map_stf2.c ./srcs/parsing/color/color_getter_utils.c ./srcs/parsing/textures/init_texture.c ./srcs/parsing/textures/texture_sampling.c \
 	./srcs/free_d.c ./srcs/parsing/map/map_stf.c ./srcs/parsing/color/color_getter.c ./srcs/parsing/textures/texture_getter.c \
 	./srcs/parsing/textures/texture_color_finder.c ./srcs/parsing/parsing.c ./srcs/parsing/file/file_utils.c \
@@ -41,12 +40,10 @@ OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 MLX_DIR = libs/minilibx-linux
 LIB_DIR = libs/libft
 
-# Rule to compile object files
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(FLAGS) -c $< -o $@
 
-# Main target
 $(NAME): $(OBJS) | mlx libft
 	@$(CC) $(FLAGS) $(OBJS) -lm -Iinc/mlx-linux -lXext -lX11 -L$(MLX_DIR) -lmlx -L$(LIB_DIR) -lft -o $(NAME)
 	@echo "╔══════════════════════════╗"
