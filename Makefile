@@ -44,36 +44,21 @@ $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) | mlx libft
-	@$(CC) $(FLAGS) $(OBJS) -lm -Iinc/mlx-linux -lXext -lX11 -L$(MLX_DIR) -lmlx -L$(LIB_DIR) -lft -o $(NAME)
-	@echo "╔══════════════════════════╗"
-	@echo "║ ✅ Compiled Successfully!║"
-	@echo "╚══════════════════════════╝"
+$(NAME): $(OBJS) | libft mlx
+	$(CC) $(FLAGS) $(OBJS) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz -L$(LIB_DIR) -lft -o $(NAME)
 
 all: $(NAME)
 
-s: fclean mlx all
-	./$(NAME) maps/strange_valid_map.cub
-
-v: clean mlx $(NAME)
-	@$(VAL) ./$(NAME) maps/strange_valid_map.cub
-
 libft:
-	@$(MAKE) -C $(LIB_DIR) > /dev/null
-	@echo "╔═══════════════════╗"
-	@echo "║ ✅ Libft compiled ║"
-	@echo "╚═══════════════════╝"
+	$(MAKE) -C $(LIB_DIR)
 
 mlx:
-	@cd ./libs/minilibx-linux && make > /dev/null
-	@echo "╔══════════════════════╗"
-	@echo "║ ✅ Minilibx compiled ║"
-	@echo "╚══════════════════════╝"
+	cd ./libs/minilibx-linux && make
 
 clean:
-	@$(RM) -R $(OBJDIR)
-	@$(MAKE) -C $(LIB_DIR) fclean > /dev/null 2>&1 || true
-	@cd ./libs/minilibx-linux && make clean > /dev/null 2>&1 || true
+	$(RM) -R $(OBJDIR)
+	$(MAKE) -C $(LIB_DIR) fclean
+	cd ./libs/minilibx-linux && make clean
 
 fclean: clean
 	@$(RM) $(NAME)

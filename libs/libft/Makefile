@@ -35,7 +35,7 @@ clean:
 	$(RM)  $(OBJECT) $(OBJECT_BONUS)
 
 fclean: clean
-	$(RM) $(NAME) 
+	$(RM) $(NAME)
 
 re: fclean all
 
