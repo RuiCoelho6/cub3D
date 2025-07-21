@@ -47,7 +47,7 @@ $(OBJDIR)/%.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 # Main target
-$(NAME): libft $(OBJS)
+$(NAME): $(OBJS) | mlx libft
 	@$(CC) $(FLAGS) $(OBJS) -lm -Iinc/mlx-linux -lXext -lX11 -L$(MLX_DIR) -lmlx -L$(LIB_DIR) -lft -o $(NAME)
 	@echo "╔══════════════════════════╗"
 	@echo "║ ✅ Compiled Successfully!║"
