@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 14:18:23 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:43:41 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,24 @@ void	init_player(t_player *player, t_data *data)
 
 void	process_movement(t_data *data)
 {
+	int	tile_x = 0;
+	int	tile_y = 0;
 	int	moved = 0;
 
-	if (data->player->key_up == 1)
+	if (data->player->key_up)
 	{
-		move_forward(data->player, data);
+		move_forward(data->player, data, tile_x, tile_y);
 		moved = 1;
 	}
-	if (data->player->key_down == 1)
+	if (data->player->key_down)
 	{
-		move_backward(data->player, data);
+		move_backward(data->player, data, tile_x, tile_y);
 		moved = 1;
 	}
-	if (data->player->key_left == 1)
-		data->player->angle -= 0.1;
-	if (data->player->key_right == 1)
-		data->player->angle += 0.1;
+	if (data->player->key_left)
+		data->player->angle -= 0.04;
+	if (data->player->key_right)
+		data->player->angle += 0.04;
 	data->player->angle = normalize_angle(data->player->angle);
 	if (moved || data->player->key_left || data->player->key_right)
 		render_scene(data->player, data);

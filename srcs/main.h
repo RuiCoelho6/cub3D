@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 14:15:06 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:37:04 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,10 @@ void			init_player(t_player *player, t_data *data);
 int				game_loop(t_data *data);
 int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
-void			move_forward(t_player *player, t_data *data);
-void			move_backward(t_player *player, t_data *data);
+void			move_forward(t_player *player, t_data *data,
+					int tile_x, int tile_y);
+void			move_backward(t_player *player, t_data *data,
+					int tile_x, int tile_y);
 
 void			put_image(int y, int x, void *a, t_data *data);
 int				c_f_color(float *colors);
