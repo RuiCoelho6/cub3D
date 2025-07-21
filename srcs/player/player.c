@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 14:43:41 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:07:41 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,26 @@ void	init_player(t_player *player, t_data *data)
 		player->angle = PI / 2;
 	else if (data->map.player_dir == 'N')
 		player->angle = PI;
-	player->key_up = 0;
-	player->key_left = 0;
-	player->key_down = 0;
-	player->key_right = 0;
+	player->key_up = false;
+	player->key_left = false;
+	player->key_down = false;
+	player->key_right = false;
 }
 
 void	process_movement(t_data *data)
 {
-	int	tile_x = 0;
-	int	tile_y = 0;
-	int	moved = 0;
+	bool	moved;
 
+	moved = false;
 	if (data->player->key_up)
 	{
-		move_forward(data->player, data, tile_x, tile_y);
-		moved = 1;
+		move_forward(data->player, data);
+		moved = true;
 	}
 	if (data->player->key_down)
 	{
-		move_backward(data->player, data, tile_x, tile_y);
-		moved = 1;
+		move_backward(data->player, data);
+		moved = true;
 	}
 	if (data->player->key_left)
 		data->player->angle -= 0.04;
