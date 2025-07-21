@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/07 15:24:58 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:18:23 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,37 @@ void	init_player(t_player *player, t_data *data)
 		player->angle = PI / 2;
 	else if (data->map.player_dir == 'N')
 		player->angle = PI;
+	player->key_up = 0;
+	player->key_left = 0;
+	player->key_down = 0;
+	player->key_right = 0;
 }
 
-void	check_movement(t_data *data, int keycode, int tile_x, int tile_y)
+void	process_movement(t_data *data)
 {
-	if (keycode == 119)
-		move_forward(data->player, data, tile_x, tile_y);
-	else if (keycode == 115)
-		move_backward(data->player, data, tile_x, tile_y);
-	else if (keycode == 100)
-		data->player->angle += 0.1;
-	else if (keycode == 97)
+	int	moved = 0;
+
+	if (data->player->key_up == 1)
+	{
+		move_forward(data->player, data);
+		moved = 1;
+	}
+	if (data->player->key_down == 1)
+	{
+		move_backward(data->player, data);
+		moved = 1;
+	}
+	if (data->player->key_left == 1)
 		data->player->angle -= 0.1;
+	if (data->player->key_right == 1)
+		data->player->angle += 0.1;
+	data->player->angle = normalize_angle(data->player->angle);
+	if (moved || data->player->key_left || data->player->key_right)
+		render_scene(data->player, data);
 }
 
-int	key_hook(int keycode, t_data *data)
+int	game_loop(t_data *data)
 {
-	int	tile_x;
-	int	tile_y;
-
-	tile_x = 0;
-	tile_y = 0;
-	if (keycode == 65307)
-		exit(0);
-	check_movement(data, keycode, tile_x, tile_y);
-	data->player->angle = normalize_angle(data->player->angle);
-	render_scene(data->player, data);
+	process_movement(data);
 	return (0);
 }

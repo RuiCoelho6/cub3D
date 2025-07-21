@@ -6,7 +6,7 @@
 /*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 11:03:14 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 10:59:38 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ int	main(int ac, char **av)
 	init_player(&player, &data);
 	data.player = &player;
 	render_scene(&player, &data);
-	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
-	mlx_key_hook(data.win_ptr, key_hook, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &murder_window_key, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, key_press, &data);
+	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, key_release, &data);
+	mlx_loop_hook(data.mlx_ptr, game_loop, &data);
 	mlx_hook(data.win_ptr, ClientMessage, NoEventMask, &murder_window, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);

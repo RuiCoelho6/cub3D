@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"player.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"random": "c"
 	}
 }
