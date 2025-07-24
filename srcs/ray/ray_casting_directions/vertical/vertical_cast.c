@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_cast.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:18:41 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 10:30:16 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_vertical_ray(float ray_angle, t_player *player,
 	}
 	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*ray_y = (((int)player->pos_y >> 6) << 6) + MAP_SIZE;
+		*ray_y = (((int)player->pos_y >> 6) << 6) + TILE_SIZE;
 		*ray_x = (player->pos_y - *ray_y) * negative_tangent + player->pos_x;
 	}
 	else
@@ -42,12 +42,12 @@ void	get_vertical_step(float ray_angle, float *x_offset, float *y_offset)
 	negative_tangent = -tan(ray_angle);
 	if (ray_angle > (PI / 2) && ray_angle < (3 * PI / 2))
 	{
-		*y_offset = -MAP_SIZE;
+		*y_offset = -TILE_SIZE;
 		*x_offset = -(*y_offset) * negative_tangent;
 	}
 	else if (ray_angle < (PI / 2) || ray_angle > (3 * PI / 2))
 	{
-		*y_offset = MAP_SIZE;
+		*y_offset = TILE_SIZE;
 		*x_offset = -(*y_offset) * negative_tangent;
 	}
 	else

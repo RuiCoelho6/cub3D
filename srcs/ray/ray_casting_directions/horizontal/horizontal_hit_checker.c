@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_hit_checker.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 16:55:06 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 10:27:01 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_ray_params	setup_horizontal_ray(float ray_angle, t_player *player)
 
 int	is_ray_out_of_bounds(float ray_x, float ray_y, t_data *data)
 {
-	if (ray_x < -100 || ray_x > (data->map.max_x * MAP_SIZE + 100))
+	if (ray_x < -100 || ray_x > (data->map.max_x * TILE_SIZE + 100))
 		return (1);
-	if (ray_y < -100 || ray_y > (data->map.max_y * MAP_SIZE + 100))
+	if (ray_y < -100 || ray_y > (data->map.max_y * TILE_SIZE + 100))
 		return (1);
 	return (0);
 }

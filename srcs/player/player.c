@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:04:53 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 15:07:41 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_player(t_player *player, t_data *data)
 {
-	player->pos_x = data->map.playerx * MAP_SIZE + (MAP_SIZE / 2);
-	player->pos_y = data->map.playery * MAP_SIZE + (MAP_SIZE / 2);
+	player->pos_x = data->map.playerx * TILE_SIZE + (TILE_SIZE / 2);
+	player->pos_y = data->map.playery * TILE_SIZE + (TILE_SIZE / 2);
 	if (data->map.player_dir == 'E')
 		player->angle = (3 * PI) / 2;
 	else if (data->map.player_dir == 'S')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_cast.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 14:20:54 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 17:31:37 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_horizontal_ray(float ray_angle, t_player *player,
 	}
 	else if (ray_angle < PI)
 	{
-		*ray_x = (((int)player->pos_x >> 6) << 6) + MAP_SIZE;
+		*ray_x = (((int)player->pos_x >> 6) << 6) + TILE_SIZE;
 		*ray_y = (player->pos_x - *ray_x) * inverse_tan + player->pos_y;
 	}
 	else
@@ -42,12 +42,12 @@ void	get_horizontal_step(float ray_angle, float *x_offset, float *y_offset)
 	inverse_tan = -1 / tan(ray_angle);
 	if (ray_angle > PI)
 	{
-		*x_offset = -MAP_SIZE;
+		*x_offset = -TILE_SIZE;
 		*y_offset = -(*x_offset) * inverse_tan;
 	}
 	else if (ray_angle < PI)
 	{
-		*x_offset = MAP_SIZE;
+		*x_offset = TILE_SIZE;
 		*y_offset = -(*x_offset) * inverse_tan;
 	}
 	else

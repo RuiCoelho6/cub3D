@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 15:07:03 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define PI 3.1415926535
 # define DR 0.0174533// one degree in radians
-# define MAP_SIZE 64
+# define TILE_SIZE 64
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 512
 

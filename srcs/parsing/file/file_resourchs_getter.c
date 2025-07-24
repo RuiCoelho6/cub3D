@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_resourchs_getter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:12:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:15:35 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	map_finder(char **d_f, t_data *data)
 		return (0);
 	data->map.map = save_map(d_f, data->map.start_map, i);
 	data->map.max_y = i;
-	data->map.size = MAP_SIZE;
+	data->map.size = TILE_SIZE;
 	if (!data->map.map)
 		return (0);
 	while (d_f[i])

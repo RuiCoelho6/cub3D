@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_sampling.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:25:13 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/09 16:10:58 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ int	calculate_texture_x(t_ray_result ray_result, t_data *data)
 
 	if (ray_result.wall_side == 0 || ray_result.wall_side == 1)
 	{
-		wall_hit_ratio = ray_result.hit_x / MAP_SIZE;
+		wall_hit_ratio = ray_result.hit_x / TILE_SIZE;
 		wall_hit_ratio = wall_hit_ratio - (int)wall_hit_ratio;
 	}
 	else
 	{
-		wall_hit_ratio = ray_result.hit_y / MAP_SIZE;
+		wall_hit_ratio = ray_result.hit_y / TILE_SIZE;
 		wall_hit_ratio = wall_hit_ratio - (int)wall_hit_ratio;
 	}
 	tex_x = (int)(wall_hit_ratio * data->texture.width);
