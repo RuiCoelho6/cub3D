@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float_color_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 17:30:34 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 16:03:21 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:21:16 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	c_f_color(float *colors)
 {
 	int	color;
 
-	color = ((int)colors[0] << 16) | ((int)colors[1] << 8) | ((int)colors[0]);
+	color = ((int)colors[0] << 16) | ((int)colors[1] << 8) | ((int)colors[2]);
 	return (color);
 }
 
