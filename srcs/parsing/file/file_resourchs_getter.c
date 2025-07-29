@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_resourchs_getter.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 13:12:28 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/29 14:11:05 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ int	t_and_c_ok(t_data *data)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (!t_ok(data))
 		return (printf("Error: Invalid texture path\n"), 0);
-	while (data->colors.ccolor[i++])
+	while (i < 3)
 	{
-		if (data->colors.ccolor[i] > 255 || data->colors.ccolor[i] < 0)
+		if (data->colors.ccolor[i] < 0 || data->colors.ccolor[i] > 255)
 			return (printf("Error: Invalid color\n"), 0);
+		if (data->colors.fcolor[i] < 0 || data->colors.fcolor[i] > 255)
+			return (printf("Error: Invalid color\n"), 0);
+		i++;
 	}
 	return (1);
 }
@@ -65,6 +68,8 @@ int	map_finder(char **d_f, t_data *data)
 	int	i;
 
 	i = data->map.start_map;
+	while (d_f[i] && is_empty_line(d_f[i]))
+		i++;
 	while (d_f[i] && !is_empty_line(d_f[i]))
 		i++;
 	if (i == data->map.start_map)
