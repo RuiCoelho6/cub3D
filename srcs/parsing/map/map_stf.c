@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_stf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 18:10:21 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:15:27 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:24:24 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,7 @@ int	map_valid(t_data *data)
 		x = 0;
 		y++;
 	}
+	if (data->map.p_f == 0)
+		return (0);
 	return (1);
 }

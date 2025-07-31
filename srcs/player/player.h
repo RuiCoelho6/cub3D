@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:50:50 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/21 15:06:48 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/31 14:47:48 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
+# define PLAYER_RADIUS 1
 
 typedef struct s_player
 {
