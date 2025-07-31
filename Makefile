@@ -34,6 +34,7 @@ SRCS =  ./srcs/parsing/map/map_stf2.c ./srcs/parsing/color/color_getter_utils.c 
 	./srcs/player/player.c\
 	./srcs/player/movement_controls.c\
 	./srcs/parsing/color/float_color_init.c \
+	./srcs//parsing/file/split_preserve_c.c \
 
 OBJDIR = Objs
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)

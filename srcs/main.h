@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/24 14:22:45 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:48:44 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int				check_file(char	*map_file);
 //parsing and init
 int				parsing_and_init(char *file, t_data *data);
 int				check_file(char	*map_file);
-char			**open_map(char *filename);
+char			**open_file(char *filename);
 char			*ft_strndup(const char *s, size_t len);
 char			*get_next_line(int fd);
 int				get_resourchs(char **d_f, t_data *data);
@@ -162,6 +162,7 @@ int				fcolor_i(int *i, int *a, t_data *data);
 int				increment(int *i, char *line);
 float			ft_get_float(int b, int i, char *l);
 void			*ft_free(void *ptr);
+char			**split_preserve_c(char const *s, char c);
 // Player functions
 void			init_player(t_player *player, t_data *data);
 int				game_loop(t_data *data);

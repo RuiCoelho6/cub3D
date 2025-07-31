@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 09:38:02 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:14:59 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:19:41 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	parsing_and_init(char *file, t_data *data)
 {
 	char	**data_file;
 
-	data_file = open_map(file);
+	data_file = open_file(file);
 	if (data_file == NULL)
 		return (0);
 	if (!get_resourchs(data_file, data))

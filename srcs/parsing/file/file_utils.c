@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpires-c <rpires-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:00:09 by ppassos           #+#    #+#             */
-/*   Updated: 2025/07/09 10:15:31 by rpires-c         ###   ########.fr       */
+/*   Updated: 2025/07/31 16:16:42 by ppassos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,30 @@ int	is_empty_line(char *line)
 	return (1);
 }
 
-char	**open_map(char *filename)
+char	**open_file(char *filename)
 {
 	int		fd;
 	char	*line;
-	char	*map;
-	char	**final_map;
+	char	*file;
+	char	**final_file;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (printf("Error: Could not open file\n"), NULL);
-	map = get_next_line(fd);
-	if (!map)
+	file = get_next_line(fd);
+	if (!file)
 		return (printf("Error: Empty file\n"), close(fd), NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
-		map = ft_strjoin_free(map, line);
+		file = ft_strjoin_free(file, line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	final_map = ft_split(map, '\n');
-	free(map);
-	if (final_map == NULL)
+	final_file = split_preserve_c(file, '\n');
+	free(file);
+	if (final_file == NULL)
 		return (printf("Error: Map empty\n"), NULL);
-	return (final_map);
+	return (final_file);
 }
