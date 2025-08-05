@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppassos <ppassos@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rpires-c <rpires-c@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:32:47 by rpires-c          #+#    #+#             */
-/*   Updated: 2025/07/31 16:48:44 by ppassos          ###   ########.fr       */
+/*   Updated: 2025/08/05 17:30:59 by rpires-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,9 +170,13 @@ int				key_press(int keycode, t_data *data);
 int				key_release(int keycode, t_data *data);
 void			move_forward(t_player *player, t_data *data);
 void			move_backward(t_player *player, t_data *data);
+void			strafe_left(t_player *player, t_data *data);
+void			strafe_right(t_player *player, t_data *data);
 void			put_image(int y, int x, void *a, t_data *data);
 int				c_f_color(float *colors);
 int				ft_isnum(int c);
+int				is_wall(float x, float y, t_data *data);
+int				can_move(float new_x, float new_y, t_data *data);
 
 // Texture functions
 int				init_texture(t_data *data);
